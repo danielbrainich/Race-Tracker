@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    My Races
+{% endblock title %}
+
+{% block content %}
+<main>
+    <div>
+        <h1>My Races</h1>
+        <div>
+            <p><a href="{% url "add_race" %}">Add a new race<a/></p>
+        </div>
+        {% if race_list|length == 0 %}
+        <p>You don't have any races yet</p>
+        {% endif %}
+        {% if race_list|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            </tdbody>
+            {% for race in race_list %}
+                <tr>
+                    <td><a href="{% url "show_race" race.id %}">{{ race.name }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock content %}

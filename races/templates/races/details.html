@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Race Details
+{% endblock title %}
+
+{% block content %}
+<main>
+    <div>
+        <h1>{{ race_object.name }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Distance</th>
+                    <th>Location</th>
+                    <th>Terrain</th>
+                    <th>Elevation Gain</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            </tdbody>
+                <tr>
+                    <th>{{ race_object.name }}</th>
+                    <th>{{ race_object.distance }}</th>
+                    <th>{{ race_object.location }}</th>
+                    <th>{{ race_object.terrain }}</th>
+                    <th>{{ race_object.elevation_gain }}</th>
+                    <th>{{ race_object.date }}</th>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <h2>Results</h2>
+        {% comment %} <p><a href="{% url "create_result" %}">Report a new result</a></p> {% endcomment %}
+        {% if race_object.results.all|length == 0 %}
+        <p>This race has no results</p>
+        {% elif race_object.results.all|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Overall Place</th>
+                    <th>Division</th>
+                    <th>Division Place</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            </tdbody>
+                <tr>
+                {% for result in race_object.results.all %}
+                    <td>{{ result.time }}</td>
+                    <td>{{ result.overall_place }}</td>
+                    <td>{{ result.division }}</td>
+                    <td>{{ result.division_place }}</td>
+                    {% comment %} <td>{{ calculate rank from overall place / finishers }}</td> {% endcomment %}
+                {% endfor %}
+        {% endif %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock content %}
