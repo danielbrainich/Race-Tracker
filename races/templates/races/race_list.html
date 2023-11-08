@@ -14,8 +14,7 @@
         </div>
         {% if race_list|length == 0 %}
         <p>You don't have any races yet</p>
-        {% endif %}
-        {% if race_list|length > 0 %}
+        {% elif race_list|length > 0 %}
         <table>
             <thead>
                 <tr>

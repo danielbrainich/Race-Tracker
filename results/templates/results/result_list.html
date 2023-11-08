@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    My Results
+{% endblock title %}
+
+{% block content %}
+<main>
+    <div>
+        <h1>My Results</h1>
+        <div>
+            {% comment %} <p><a href="{% url "add_result" %}">Add a new result<a/></p> {% endcomment %}
+        </div>
+        {% if result_list|length == 0 %}
+        <p>You don't have any results yet</p>
+
+        {% elif result_list|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Race</th>
+                    <th>Time</th>
+                    <th>Overall Place</th>
+                    <th>Division</th>
+                    <th>Division Place</th>
+                    <th>Overall Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for result in result_list %}
+                <tr>
+                    <th>{{ result.time }}</th>
+                    <th>{{ result.overall_place }}</th>
+                    <th>{{ result.division }}</th>
+                    <th>{{ result.division_place }}</th>
+                    <th>{{ result.finishers }}</th>
+                    <th>{{ result.race }}</th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</main>
+{% endblock content %}

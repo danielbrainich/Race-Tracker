@@ -9,7 +9,7 @@ def list_races(request):
     context = {
         "race_list": list,
     }
-    return render(request, "races/list.html", context)
+    return render(request, "races/race_list.html", context)
 
 @login_required
 def show_race(request, id):
@@ -17,7 +17,7 @@ def show_race(request, id):
     context = {
         "race_object": race,
     }
-    return render(request, "races/details.html", context)
+    return render(request, "races/race_details.html", context)
 
 
 @login_required

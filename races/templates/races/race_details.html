@@ -35,7 +35,7 @@
 
 
         <h2>Results</h2>
-        {% comment %} <p><a href="{% url "create_result" %}">Report a new result</a></p> {% endcomment %}
+        <p><a href="{% url "add_result" %}">Add a result</a></p>
         {% if race_object.results.all|length == 0 %}
         <p>This race has no results</p>
         {% elif race_object.results.all|length > 0 %}
