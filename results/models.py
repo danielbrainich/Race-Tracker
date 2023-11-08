@@ -16,6 +16,7 @@ class Result(models.Model):
         )
     division_place = models.SmallIntegerField()
     finishers = models.SmallIntegerField()
+    link = models.URLField(null=True)
     race = models.OneToOneField(
         Race,
         related_name="results",

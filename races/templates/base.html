@@ -4,30 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>
     {% block title %}{%  endblock title %}
     </title>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                {% if user.is_authenticated %}
-                <li><a href="{% url "list_races" %}">My Races</a></li>
-                <li><a href="{% url "list_results" %}">My Results</a></li>
-                <li><a href="{% url "logout" %}">Logout</a></li>
-                {% else %}
-                <li><a href="{% url "login" %}">Login</a></li>
-                <li><a href="{% url "signup" %}">Signup</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
-    {% block content %}{% endblock content %}
-    <footer>
-        <p> designed and coded by me, Daniel.
-    </footer>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <header>
+                        <nav>
+                            <ul>
+                                {% if user.is_authenticated %}
+                                <li><a href="{% url "list_races" %}">My Races</a></li>
+                                <li><a href="{% url "list_results" %}">My Results</a></li>
+                                <li><a href="{% url "logout" %}">Logout</a></li>
+                                {% else %}
+                                <li><a href="{% url "login" %}">Login</a></li>
+                                <li><a href="{% url "signup" %}">Signup</a></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </header>
+                    {% block content %}{% endblock content %}
+                    <footer>
+                        <p> designed and coded by me, Daniel.
+                    </footer>
+                </div>
+            <div class="col"></div>
+        </div>
+    </div>
 </body>
 </html>

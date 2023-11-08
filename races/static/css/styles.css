@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+
+/* Set all box sizing to border-box */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+/* Set all elements to use the Open Sans font */
+body, input, textarea, button, select {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set the background color of all pages */
+html, body {
+  background-color: #F2F2F2;
+}
+
+/* Set the style of the navigation list */
+header nav ul {
+  background-color: white;
+  border-bottom: 1px solid #CCC;
+  box-sizing: border-box;
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 2em;
+  padding: 0 0 0 1em;
+}
+
+/* Set the spacing and layout of the nav list items */
+header nav ul li {
+  display: inline-block;
+  margin: 0 1em;
+  padding: 1em 0 1em 0;
+}
+
+/* Set the style of the links in the nav */
+header nav ul li a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Make the input tags look nicer */
+input {
+  height: 1.5em;
+  margin: 0;
+  padding: .25em .5em;
+}
+
+/* Make the select boxes look nicer */
+select {
+  height: 2.5em;
+}
+
+/* Make the select-multiple boxes look nicer */
+select[multiple] {
+  height: 7.5em;
+}
+
+/* Make the textarea inputs look nicer */
+textarea {
+  margin: 0;
+  padding: .25em .5em;
+}
+
+/* Set the width on all tables */
+table {
+  width: 100%;
+}
+
+/* Set the size of the help text in forms */
+.helptext {
+  display: block;
+  font-size: 80%;
+}
+
+/* Make the login and sign-up forms look nicer */
+.login-form,
+.signup-form {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  max-width: 400px;
+  padding: 2em;
+}
+
+/* Make the task and projects forms look nicer */
+.result-form,
+.race-form {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  max-width: 600px;
+  padding: 2em;
+}
+
+/* Make all of the headers the same */
+.result-form h1,
+.login-form h1,
+.signup-form h1,
+.race-list h1,
+.race-form h1,
+.race-detail h1 {
+  margin-top: 0;
+}
+
+/* Add spacing to the section of the project detail */
+.race-detail h2 {
+  margin-top: 2em;
+}
+
+/* Standardize form layout using grid */
+.result-form p,
+.login-form p,
+.signup-form p,
+.race-form p {
+  display: grid;
+  align-items: center;
+  column-gap: 10px;
+  grid-template-columns: 100px 1fr;
+}
+
+/* Standardize help text positions in the grid */
+.result-form p .helptext,
+.login-form p .helptext,
+.signup-form p .helptext,
+.race-form p .helptext {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+/* Make the buttons a little larger */
+.race-form button,
+.result-list button,
+.login-form button,
+.signup-form button,
+.race-form button {
+  padding: 0.25em 1em;
+}
+
+/* Add a nice box around the lists and details */
+.result-list,
+.race-list,
+.race-detail {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  max-width: 800px;
+  padding: 2em;
+}
+
+/* Add padding to the table header and table datum tags */
+.result-list th,
+.result-list td,
+.race-list th,
+.race-list td,
+.race-detail th,
+.race-detail td {
+  padding: .5em;
+}
+
+/* Add a bottom border to the table header tags */
+.result-list thead tr th,
+.race-list thead tr th,
+.race-detail thead tr th {
+  border-bottom: 2px solid #DEDEDE;
+}
+
+/* Center align the text on specific table header cells */
+.result-list tbody td:nth-child(2),
+.result-list tbody td:nth-child(3),
+.result-list tbody td:nth-child(4),
+.race-list tbody tr td,
+.race-detail tbody td:nth-child(2),
+.race-detail tbody td:nth-child(3),
+.race-detail tbody td:nth-child(4),
+.race-detail tbody td:nth-child(5) {
+  text-align: center;
+}
+
+/* Add horizontal rules to all rows except the last */
+.result-list tbody :not(tr:last-child) td,
+.race-list tbody :not(tr:last-child) td,
+.race-detail tbody :not(tr:last-child) td {
+  border-bottom: 1px solid #DEDEDE;
+}

@@ -6,10 +6,11 @@ class AddResultForm(ModelForm):
     class Meta:
         model = Result
         fields = [
+            "race",
             "time",
             "overall_place",
             "division",
             "division_place",
             "finishers",
-            "race",
+            "link",
         ]

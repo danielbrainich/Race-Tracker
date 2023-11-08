@@ -12,4 +12,5 @@ class AddRaceForm(ModelForm):
             "terrain",
             "elevation_gain",
             "date",
+            "link",
         ]

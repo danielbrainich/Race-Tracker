@@ -7,7 +7,7 @@
 
 {% block content %}
 <main>
-    <div>
+    <div class="race-detail">
         <h1>{{ race_object.name }}</h1>
         <table>
             <thead>
@@ -28,6 +28,7 @@
                     <th>{{ race_object.terrain }}</th>
                     <th>{{ race_object.elevation_gain }}</th>
                     <th>{{ race_object.date }}</th>
+                    <th>{{ race_object.link }}</th>
                 </tr>
             </tbody>
         </table>
@@ -47,6 +48,7 @@
                     <th>Division</th>
                     <th>Division Place</th>
                     <th>Rank</th>
+                    <th>Link</th>
                 </tr>
             </thead>
             </tdbody>

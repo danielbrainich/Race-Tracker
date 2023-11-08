@@ -7,10 +7,10 @@
 
 {% block content %}
 <main>
-    <div>
+    <div class="task-list">
         <h1>My Results</h1>
         <div>
-            {% comment %} <p><a href="{% url "add_result" %}">Add a new result<a/></p> {% endcomment %}
+            <p><a href="{% url "add_result" %}">Add a new result<a/></p>
         </div>
         {% if result_list|length == 0 %}
         <p>You don't have any results yet</p>
@@ -25,17 +25,19 @@
                     <th>Division</th>
                     <th>Division Place</th>
                     <th>Overall Rank</th>
+                    <th>Link</th>
                 </tr>
             </thead>
             <tbody>
             {% for result in result_list %}
-                <tr>
+            <tr>
+                    <th>{{ result.race }}</th>
                     <th>{{ result.time }}</th>
                     <th>{{ result.overall_place }}</th>
                     <th>{{ result.division }}</th>
                     <th>{{ result.division_place }}</th>
                     <th>{{ result.finishers }}</th>
-                    <th>{{ result.race }}</th>
+                    <th>{{ result.link }}</th>
                 </tr>
             {% endfor %}
             </tbody>
