@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load custom_tags %}
 
 {% block title %}
     My Races
@@ -8,12 +8,26 @@
 {% block content %}
 <main>
     <div class="race-list">
-        <h1>My Races</h1>
+        <div class="site-title">
+            <h1>Race Tracker</h1>
+        </div>
+        <div class="upcoming-races">
+            <h2>Upcoming Races</h2>
+            {% for race in race_list %}
+                {% if race.date|in_the_future %}
+                <p><a href="{% url "show_race" race.id %}">{{ race.name }}</a></p>
+                <p>{{ race.date|timeuntil }} until race day!</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="past-races">
+            <h2>Past Races</h2>
+        </div>
         <div>
             <p><a href="{% url "add_race" %}">Add a new race<a/></p>
         </div>
         {% if race_list|length == 0 %}
-        <p>You don't have any races yet</p>
+        <p>You don't have any races</p>
         {% elif race_list|length > 0 %}
         <table>
             <thead>
@@ -23,9 +37,11 @@
             </thead>
             </tdbody>
             {% for race in race_list %}
+            {% if not race.date|in_the_future %}
                 <tr>
                     <td><a href="{% url "show_race" race.id %}">{{ race.name }}</td>
                 </tr>
+            {% endif %}
             {% endfor %}
         {% endif %}
             </tbody>

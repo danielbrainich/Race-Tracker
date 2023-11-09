@@ -190,3 +190,13 @@ table {
 .race-detail tbody :not(tr:last-child) td {
   border-bottom: 1px solid #DEDEDE;
 }
+
+
+.site-title {
+  display: flex;
+  justify-content: center;
+}
+
+.upcoming-races {
+  display: flex;
+}
