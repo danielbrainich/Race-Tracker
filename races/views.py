@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from races.models import Race
 from races.forms import AddRaceForm
-from datetime import date
 
 @login_required
 def list_races(request):

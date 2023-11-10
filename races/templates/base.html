@@ -1,51 +1,96 @@
+
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="{% static "css/styles.css" %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>
-    {% block title %}{%  endblock title %}
-    </title>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    {% comment %} <link rel="stylesheet" href="{% static "css/styles.css" %}"> {% endcomment %}
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  <body>
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <header>
+      <div class="row">
+        <div class="column">
+          <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">RaceTracker</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
                 {% if user.is_authenticated %}
-                    <nav>
-                        <ul>
-                            <li><a href="{% url "home" %}">Home</a></li>
-                            <li><a href="{% url "list_results" %}">My Results</a></li>
-                            <li><a href="{% url "add_race" %}">Add a Race</a></li>
-                            <li><a href="{% url "add_result" %}">Add a Result</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="{% url "logout" %}">Logout</a></li>
-                        </ul>
-                    </nav>
-                    {% else %}
-                    <nav class="alternate-nav">
-                        <ul>
-                            <li><a href="{% url "login" %}">Login</a></li>
-                            <li><a href="{% url "signup" %}">Signup</a></li>
-                        </ul>
-                    </nav>
-                    {% endif %}
-                </header>
-            </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                    <li><a href="{% url "home" %}">Home</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Races<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="{% url "home" %}">List Races</a></li>
+                        <li><a href="{% url "add_race" %}">Add a Race</a></li>
+                        <li><a href="#">Edit a Race</a></li>
+                      </ul>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Results<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="{% url "list_results" %}">List Results</a></li>
+                        <li><a href="{% url "add_result" %}">Add a Result</a></li>
+                        <li><a href="#">Edit a Result</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url "logout" %}">Logout</a></li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+                {% else %}
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url "login" %}">Login</a></li>
+                    <li><a href="{% url "signup" %}">Signup</a></li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+                {% endif %}
+              </div><!-- /.container-fluid -->
+            </nav>
+        </div><!-- bootstrap column -->
+      </div><!-- bootstrap row -->
+
+      <main>
+          {% block content %}{% endblock content %}
+      </main>
+
+      <footer>
+        <div class="row">
+          <div class="col">
+
+
+          </div>
         </div>
-        {% block content %}{% endblock content %}
-        <div class="row justify-content-center">
-            <div class="col-12"></div>
-                <footer>
-                    <p> designed and coded by me, Daniel.
-                </footer>
-            </div>
-        </div>
-    </div>
-</body>
+      </footer>
+    </div><!-- bootstrap container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+  </body>
 </html>

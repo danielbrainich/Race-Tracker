@@ -6,14 +6,20 @@
 {% endblock title %}
 
 {% block content %}
-<main>
-    <div class="result-form">
-        <h1>Add a Result</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ add_result_form.as_p }}
-            <button>Add</button>
-        </form>
+
+<div class="row">
+    <div class="col-xs-10 col-sm-8 col-md-6">
+
+        <div class="form-group">
+            <h1>Add a Result</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ add_result_form.as_p }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
     </div>
-</main>
+</div>
+
 {% endblock content %}

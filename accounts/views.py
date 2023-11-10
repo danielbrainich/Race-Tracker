@@ -37,21 +37,21 @@ def account_signup(request):
         if signup_form.is_valid():
             username = signup_form.cleaned_data["username"]
             password = signup_form.cleaned_data["password"]
-            password_confirmation = signup_form.cleaned_data[
-                "password_confirmation"
-            ]
+            password_confirmation = signup_form.cleaned_data["password_confirmation"]
 
-            if password == password_confirmation:
+            if User.objects.filter(username=username).exists():
+                signup_form.add_error("username", "the username is already taken")
+
+            elif password == password_confirmation:
                 user = User.objects.create_user(username, password=password)
-
                 login(request, user)
-                return redirect("list_projects")
+                return redirect("home")
             else:
                 signup_form.add_error("password", "the passwords do not match")
+
     else:
         signup_form = SignupForm()
     context = {
         "signup_form": signup_form,
     }
     return render(request, "accounts/signup.html", context)
-

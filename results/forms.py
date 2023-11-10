@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from results.models import Result
+from django import forms
 
 
 class AddResultForm(ModelForm):
@@ -14,3 +15,13 @@ class AddResultForm(ModelForm):
             "finishers",
             "link",
         ]
+
+        widgets = {
+            "race": forms.TextInput(attrs={"class": "form-control"}),
+            "time": forms.NumberInput(attrs={"class": "form-control"}),
+            "overall_place": forms.NumberInput(attrs={"class": "form-control"}),
+            "division": forms.Select(attrs={"class": "form-control"}),
+            "division_place": forms.NumberInput(attrs={"class": "form-control"}),
+            "finishers": forms.NumberInput(attrs={"class": "form-control"}),
+            "link": forms.URLInput(attrs={"class": "form-control"}),
+        }

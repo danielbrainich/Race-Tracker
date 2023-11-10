@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from races.models import Race
+from django import forms
 
 
 class AddRaceForm(ModelForm):
@@ -14,3 +15,13 @@ class AddRaceForm(ModelForm):
             "date",
             "link",
         ]
+
+        widgets = {
+            "name": forms.TextInput(attrs={"class": "form-control"}),
+            "distance": forms.Select(attrs={"class": "form-control"}),
+            "location": forms.TextInput(attrs={"class": "form-control"}),
+            "terrain": forms.Select(attrs={"class": "form-control"}),
+            "elevation_gain": forms.NumberInput(attrs={"class": "form-control"}),
+            "date": forms.DateInput(attrs={"class": "form-control"}),
+            "link": forms.URLInput(attrs={"class": "form-control"}),
+        }
