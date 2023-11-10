@@ -1,66 +1,71 @@
 {% extends "base.html" %}
-
+{% load custom_tags %}
 
 {% block title %}
-    Race Details
+    {{ race_object.name }}
 {% endblock title %}
 
 {% block content %}
-<main>
-    <div class="race-detail">
-        <h1>{{ race_object.name }}</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Distance</th>
-                    <th>Location</th>
-                    <th>Terrain</th>
-                    <th>Elevation Gain</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            </tdbody>
-                <tr>
-                    <th>{{ race_object.name }}</th>
-                    <th>{{ race_object.distance }}</th>
-                    <th>{{ race_object.location }}</th>
-                    <th>{{ race_object.terrain }}</th>
-                    <th>{{ race_object.elevation_gain }}</th>
-                    <th>{{ race_object.date }}</th>
-                    <th>{{ race_object.link }}</th>
-                </tr>
-            </tbody>
-        </table>
-        <h2>Results</h2>
-        <p><a href="{% url "add_result" %}">Add a result</a></p>
-        {% if race_object.results.all|length == 0 %}
-        <p>This race has no results</p>
-        {% elif race_object.results.all|length > 0 %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Overall Place</th>
-                    <th>Division</th>
-                    <th>Division Place</th>
-                    <th>Rank</th>
-                    <th>Link</th>
-                </tr>
-            </thead>
-            </tdbody>
-                <tr>
-                {% for result in race_object.results.all %}
-                    <td>{{ result.time }}</td>
-                    <td>{{ result.overall_place }}</td>
-                    <td>{{ result.division }}</td>
-                    <td>{{ result.division_place }}</td>
-                    {% comment %} <td>{{ calculate rank from overall place / finishers }}</td> {% endcomment %}
-                {% endfor %}
-        {% endif %}
-                </tr>
-            </tbody>
-        </table>
+<div class="row">
+    <div class="col">
+
+        <h2>{{ race_object.name }}</h2>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Race Details</div>
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Distance</th>
+                        <th>Location</th>
+                        <th>Terrain</th>
+                        <th>Elevation Gain</th>
+                        <th>Date</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tdbody>
+                    <tr>
+                        <td>{{ race_object.distance }}</td>
+                        <td>{{ race_object.location }}</td>
+                        <td>{{ race_object.terrain }}</td>
+                        <td>{{ race_object.elevation_gain }}</td>
+                        <td>{{ race_object.date }}</td>
+                        <td><a href="{{ race.link }}">Link to race website</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Race Result</div>
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Overall Place</th>
+                        <th>Division</th>
+                        <th>Division Place</th>
+                        <th>Rank</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ race_object.results.time }}</td>
+                        <td>{{ race_object.results.overall_place }}</td>
+                        <td>{{ race_object.results.division }}</td>
+                        <td>{{ race_object.results.division_place }}</td>
+                        <td>{{ race_object.results.overall_place|calculate_percentile:race_object.results.finishers }}%</td>
+                        <td><a href="{{ race_object.results.link }}">Link to results website</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
-</main>
+</div>
 {% endblock content %}
