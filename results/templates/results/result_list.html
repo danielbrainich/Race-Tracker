@@ -9,6 +9,7 @@
 <div class="row">
     <div class="col">
 
+        <h2>Result List</h2>
         <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading">My Results</div>
@@ -28,7 +29,7 @@
                 <tbody>
                     {% for result in result_list %}
                     <tr>
-                        <td>{{ result.race }}</td>
+                        <td><a href="{% url "show_race" result.race.id %}">{{ result.race }}</a></td>
                         <td>{{ result.time }}</td>
                         <td>{{ result.overall_place }}</td>
                         <td>{{ result.division }}</td>
