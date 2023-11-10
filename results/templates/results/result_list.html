@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load custom_tags %}
 
 {% block title %}
     My Results
@@ -7,42 +7,46 @@
 
 {% block content %}
 <main>
-    <div class="task-list">
-        <h1>My Results</h1>
-        <div>
-            <p><a href="{% url "add_result" %}">Add a new result<a/></p>
+    <div class="row">
+        <div class="col-12">
+            <div class="list-box">
+                <h1 class="site-subtitle">My Results</h1>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Race</th>
+                            <th>Time</th>
+                            <th>Overall Place</th>
+                            <th>Division</th>
+                            <th>Division Place</th>
+                            <th>Percentile</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if result_list|length == 0 %}
+                        <tr>
+                            <td>You haven't reported any results yet</td>
+                        <tr>
+                        {% elif result_list|length > 0 %}
+                        {% for result in result_list %}
+                        <tr>
+                            <td>{{ result.race }}</td>
+                            <td>{{ result.time }}</td>
+                            <td>{{ result.overall_place }}</td>
+                            <td>{{ result.division }}</td>
+                            <td>{{ result.division_place }}</td>
+                            <td>{{ result.overall_place|calculate_percentile:result.finishers }}</th>
+                            <td><a href="{{ result.link }}">click me!</a></td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                    <p><a href="{% url "add_result" %}">Add a new result<a/></p>
+                </div>
+            </div>
         </div>
-        {% if result_list|length == 0 %}
-        <p>You don't have any results yet</p>
-
-        {% elif result_list|length > 0 %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Race</th>
-                    <th>Time</th>
-                    <th>Overall Place</th>
-                    <th>Division</th>
-                    <th>Division Place</th>
-                    <th>Overall Rank</th>
-                    <th>Link</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for result in result_list %}
-            <tr>
-                    <th>{{ result.race }}</th>
-                    <th>{{ result.time }}</th>
-                    <th>{{ result.overall_place }}</th>
-                    <th>{{ result.division }}</th>
-                    <th>{{ result.division_place }}</th>
-                    <th>{{ result.finishers }}</th>
-                    <th>{{ result.link }}</th>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        {% endif %}
     </div>
 </main>
 {% endblock content %}

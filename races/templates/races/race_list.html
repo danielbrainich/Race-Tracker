@@ -7,45 +7,85 @@
 
 {% block content %}
 <main>
-    <div class="race-list">
-        <div class="site-title">
-            <h1>Race Tracker</h1>
+    <div class="row">
+        <div class="col-12">
+            <div class="list-box">
+                <h1 class="site-title">Race Tracker</h1>
+                <div class="upcoming-list">
+                    <h2 class="site-subtitle">Upcoming Races</h2>
+
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Distance</th>
+                                <th>Location</th>
+                                <th>Terrain</th>
+                                <th>Elevation Gain</th>
+                                <th>Date</th>
+                                <th>Link</th>
+                            <tr>
+                        </thead>
+                        <tbody>
+                            {% for race in race_list %}
+                            {% if race.date|in_the_future %}
+                            <tr>
+                                <td><a href="{% url "show_race" race.id %}">{{ race.name }}</a></td>
+                                <td>{{ race.distance }}</td>
+                                <td>{{ race.location }}</td>
+                                <td>{{ race.terrain }}</td>
+                                <td>{{ race.elevation_gain }}</td>
+                                <td>{{ race.date }}</td>
+                                <td>{{ race.link }}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbdody>
+                    </table>
+                </div>
+                <div class="past-list">
+                    <h2 class="site-subtitle">Past Races</h2>
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Distance</th>
+                                <th>Location</th>
+                                <th>Terrain</th>
+                                <th>Elevation Gain</th>
+                                <th>Date</th>
+                                <th>Link</th>
+                            <tr>
+                        </thead>
+                        </tdbody>
+                            {% for race in race_list %}
+                            {% if not race.date|in_the_future %}
+                            <tr>
+                                <td><a href="{% url "show_race" race.id %}">{{ race.name }}</a></td>
+                                <td>{{ race.distance }}</td>
+                                <td>{{ race.location }}</td>
+                                <td>{{ race.terrain }}</td>
+                                <td>{{ race.elevation_gain }}</td>
+                                <td>{{ race.date }}</td>
+                                <td><a href="{{ race.link }}">Link</a></td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <p><a href="{% url "add_race" %}">Add a new race<a/></p>
+                </div>
+            </div>
         </div>
-        <div class="upcoming-races">
-            <h2>Upcoming Races</h2>
-            {% for race in race_list %}
-                {% if race.date|in_the_future %}
-                <p><a href="{% url "show_race" race.id %}">{{ race.name }}</a></p>
-                <p>{{ race.date|timeuntil }} until race day!</p>
-                {% endif %}
-            {% endfor %}
-        </div>
-        <div class="past-races">
-            <h2>Past Races</h2>
-        </div>
-        <div>
-            <p><a href="{% url "add_race" %}">Add a new race<a/></p>
-        </div>
-        {% if race_list|length == 0 %}
-        <p>You don't have any races</p>
-        {% elif race_list|length > 0 %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            </tdbody>
-            {% for race in race_list %}
-            {% if not race.date|in_the_future %}
-                <tr>
-                    <td><a href="{% url "show_race" race.id %}">{{ race.name }}</td>
-                </tr>
-            {% endif %}
-            {% endfor %}
-        {% endif %}
-            </tbody>
-        </table>
     </div>
 </main>
 {% endblock content %}
+
+
+
+
+        {% comment %} {% if race_list|length == 0 %}
+        <p>You don't have any races</p>
+        {% elif race_list|length > 0 %} {% endcomment %}
