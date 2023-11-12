@@ -10,42 +10,41 @@
     <div class="col">
 
         <h2 class="mt-4 mb-4">Results List</h2>
-            <div class="card mt-4">
-                <div class="card-header">Results List</div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Race</th>
-                                <th>Time</th>
-                                <th>Overall Place</th>
-                                <th>Division</th>
-                                <th>Division Place</th>
-                                <th>Percentile</th>
-                                <th>Link</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% if result_list %}
-                            {% for result in result_list %}
-                            <tr>
-                                <td><a href="{% url "show_race" result.race.id %}">{{ result.race }}</a></td>
-                                <td>{{ result.time }}</td>
-                                <td>{{ result.overall_place }}</td>
-                                <td>{{ result.division }}</td>
-                                <td>{{ result.division_place }}</td>
-                                <td>{{ result.overall_place|calculate_percentile:result.finishers }}</td>
-                                <td><a href="{{ result.link }}">Link to results website</a></td>
-                            </tr>
-                            {% endfor %}
-                            {% else %}
-                            <tr>
-                                <td>No results reported</td>
-                            </tr>
-                            {% endif %}
-                        </tbody>
-                    </table>
-                </div>
+        <div class="card mt-4">
+            <div class="card-header">Results List</div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Race</th>
+                            <th>Time</th>
+                            <th>Overall Place</th>
+                            <th>Division</th>
+                            <th>Division Place</th>
+                            <th>Percentile</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if result_list %}
+                        {% for result in result_list %}
+                        <tr>
+                            <td><a href="{% url "show_race" result.race.id %}">{{ result.race }}</a></td>
+                            <td>{{ result.time }}</td>
+                            <td>{{ result.overall_place }}</td>
+                            <td>{{ result.get_division_display }}</td>
+                            <td>{{ result.division_place }}</td>
+                            <td>{{ result.overall_place|calculate_percentile:result.finishers }}</td>
+                            <td><a href="{{ result.link }}">Link to results website</a></td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td>No results reported</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
             </div>
         </div>
 

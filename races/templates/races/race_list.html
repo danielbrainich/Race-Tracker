@@ -28,7 +28,7 @@
                 <div class="card mt-4">
                 <div class="card-header">All Races</div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -45,9 +45,9 @@
                                 {% for race in all_races %}
                                 <tr>
                                     <td><a href="{% url "show_race" race.id %}">{{ race.name }}</a></td>
-                                    <td>{{ race.distance }}</td>
+                                    <td>{{ race.get_distance_display }}</td>
                                     <td>{{ race.location }}</td>
-                                    <td>{{ race.terrain }}</td>
+                                    <td>{{ race.get_terrain_display }}</td>
                                     <td>{{ race.elevation_gain }}</td>
                                     <td>{{ race.date }}</td>
                                     <td><a href="{{ race.link }}">Link to race website</a></td>
@@ -74,7 +74,7 @@
                 <div class="card mt-4">
                     <div class="card-header">Upcoming Races</div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -91,9 +91,9 @@
                                 {% for race in future_races %}
                                 <tr>
                                     <td><a href="{% url "show_race" race.id %}">{{ race.name }}</a></td>
-                                    <td>{{ race.distance }}</td>
+                                    <td>{{ race.get_distance_display }}</td>
                                     <td>{{ race.location }}</td>
-                                    <td>{{ race.terrain }}</td>
+                                    <td>{{ race.get_terrain_display }}</td>
                                     <td>{{ race.elevation_gain }}</td>
                                     <td>{{ race.date }}</td>
                                     <td><a href="{{ race.link }}">Link to race website</a></td>
@@ -120,7 +120,7 @@
                 <div class="card mt-4">
                     <div class="card-header">Past Races</div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -137,9 +137,9 @@
                                 {% for race in past_races %}
                                 <tr>
                                     <td><a href="{% url "show_race" race.id %}">{{ race.name }}</a></td>
-                                    <td>{{ race.distance }}</td>
+                                    <td>{{ race.get_distance_display }}</td>
                                     <td>{{ race.location }}</td>
-                                    <td>{{ race.terrain }}</td>
+                                    <td>{{ race.get_terrain_display }}</td>
                                     <td>{{ race.elevation_gain }}</td>
                                     <td>{{ race.date }}</td>
                                     <td><a href="{{ race.link }}">Link to race website</a></td>

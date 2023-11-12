@@ -13,7 +13,7 @@ def days_until(value):
 def calculate_percentile(value, total):
     try:
         if total > 0:
-            return round((value / total) * 100, 2)
+            return round((value / total) * 100)
     except (ValueError, ZeroDivisionError):
         pass
     return 0

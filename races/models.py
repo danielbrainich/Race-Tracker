@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-DISTANCE_CHOICES = [
+class Race(models.Model):
+
+    DISTANCE_CHOICES = [
         ("5k", "5k"),
         ("10k", "10k"),
         ("half_marathon", "Half Marathon"),
@@ -12,14 +14,12 @@ DISTANCE_CHOICES = [
         ("50_mile", "50 mile"),
         ("100k", "100k"),
         ("100_mile", "100 mile"),
-]
-
-TERRAIN_CHOICES = [
+    ]
+    TERRAIN_CHOICES = [
         ("trail", "Trail"),
         ("road", "Road"),
-]
+    ]
 
-class Race(models.Model):
     name = models.CharField(max_length=150)
     distance = models.CharField(
         max_length=13,
