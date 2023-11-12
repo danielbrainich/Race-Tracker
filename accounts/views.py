@@ -37,8 +37,9 @@ def account_signup(request):
         if signup_form.is_valid():
             username = signup_form.cleaned_data["username"]
             password = signup_form.cleaned_data["password"]
-            password_confirmation = signup_form.cleaned_data["password_confirmation"]
-
+            password_confirmation = signup_form.cleaned_data[
+                "password_confirmation"
+            ]
             if User.objects.filter(username=username).exists():
                 signup_form.add_error("username", "the username is already taken")
 
@@ -46,6 +47,7 @@ def account_signup(request):
                 user = User.objects.create_user(username, password=password)
                 login(request, user)
                 return redirect("home")
+
             else:
                 signup_form.add_error("password", "the passwords do not match")
 

@@ -9,75 +9,159 @@
 <div class="row">
     <div class="col">
 
-        <h2>Race List</h2>
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Upcoming Races</div>
-            <!-- Table -->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Distance</th>
-                        <th>Location</th>
-                        <th>Terrain</th>
-                        <th>Elevation Gain</th>
-                        <th>Date</th>
-                        <th>Link</th>
-                    <tr>
-                </thead>
-                <tbody>
-                    {% for race in race_list %}
-                    {% if race.date|in_the_future %}
-                    <tr>
-                        <td><a href="{% url "show_race" race.id %}">{{ race.name }}</a></td>
-                        <td>{{ race.distance }}</td>
-                        <td>{{ race.location }}</td>
-                        <td>{{ race.terrain }}</td>
-                        <td>{{ race.elevation_gain }}</td>
-                        <td>{{ race.date }}</td>
-                        <td><a href="{{ race.link }}">Link to race website</a></td>
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
-                </tbdody>
-            </table>
-        </div>
+        <h2 class="mt-4 mb-4">Race List</h2>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#all-races-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">All Races</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#upcoming-races-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Upcoming Races</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#past-races-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Past Races</button>
+        </li>
+        </ul>
 
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Past Races</div>
-            <!-- Table -->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Distance</th>
-                        <th>Location</th>
-                        <th>Terrain</th>
-                        <th>Elevation Gain</th>
-                        <th>Date</th>
-                        <th>Link</th>
-                    <tr>
-                </thead>
-                <tbody>
-                    {% for race in race_list %}
-                    {% if not race.date|in_the_future %}
-                    <tr>
-                        <td><a href="{% url "show_race" race.id %}">{{ race.name }}</a></td>
-                        <td>{{ race.distance }}</td>
-                        <td>{{ race.location }}</td>
-                        <td>{{ race.terrain }}</td>
-                        <td>{{ race.elevation_gain }}</td>
-                        <td>{{ race.date }}</td>
-                        <td><a href="{{ race.link }}">Link to race website</a></td>
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
-                </tbdody>
-            </table>
-        </div>
+        <div class="tab-content" id="myTabContent">
 
+            <div class="tab-pane fade show active" id="all-races-tab-pane" role="tabpanel" aria-labelledby="all-races-tab" tabindex="0">
+                <div class="card mt-4">
+                <div class="card-header">All Races</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Distance</th>
+                                    <th>Location</th>
+                                    <th>Terrain</th>
+                                    <th>Elevation Gain</th>
+                                    <th>Date</th>
+                                    <th>Link</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if all_races %}
+                                {% for race in all_races %}
+                                <tr>
+                                    <td><a href="{% url "show_race" race.id %}">{{ race.name }}</a></td>
+                                    <td>{{ race.distance }}</td>
+                                    <td>{{ race.location }}</td>
+                                    <td>{{ race.terrain }}</td>
+                                    <td>{{ race.elevation_gain }}</td>
+                                    <td>{{ race.date }}</td>
+                                    <td><a href="{{ race.link }}">Link to race website</a></td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr>
+                                    <td>No races listed</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                {% endif %}
+                            </tbdody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="upcoming-races-tab-pane" role="tabpanel" aria-labelledby="upcoming-races-tab" tabindex="0">
+                <div class="card mt-4">
+                    <div class="card-header">Upcoming Races</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Distance</th>
+                                    <th>Location</th>
+                                    <th>Terrain</th>
+                                    <th>Elevation Gain</th>
+                                    <th>Date</th>
+                                    <th>Link</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if future_races %}
+                                {% for race in future_races %}
+                                <tr>
+                                    <td><a href="{% url "show_race" race.id %}">{{ race.name }}</a></td>
+                                    <td>{{ race.distance }}</td>
+                                    <td>{{ race.location }}</td>
+                                    <td>{{ race.terrain }}</td>
+                                    <td>{{ race.elevation_gain }}</td>
+                                    <td>{{ race.date }}</td>
+                                    <td><a href="{{ race.link }}">Link to race website</a></td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr>
+                                    <td>No upcoming races listed</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                {% endif %}
+                            </tbdody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="past-races-tab-pane" role="tabpanel" aria-labelledby="past-races-tab" tabindex="0">
+                <div class="card mt-4">
+                    <div class="card-header">Past Races</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Distance</th>
+                                    <th>Location</th>
+                                    <th>Terrain</th>
+                                    <th>Elevation Gain</th>
+                                    <th>Date</th>
+                                    <th>Link</th>
+                                <tr>
+                            </thead>
+                            <tbody>
+                                {% if past_races %}
+                                {% for race in past_races %}
+                                <tr>
+                                    <td><a href="{% url "show_race" race.id %}">{{ race.name }}</a></td>
+                                    <td>{{ race.distance }}</td>
+                                    <td>{{ race.location }}</td>
+                                    <td>{{ race.terrain }}</td>
+                                    <td>{{ race.elevation_gain }}</td>
+                                    <td>{{ race.date }}</td>
+                                    <td><a href="{{ race.link }}">Link to race website</a></td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr>
+                                    <td>No past races listed</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                {% endif %}
+                            </tbdody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock content %}

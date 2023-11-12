@@ -8,62 +8,72 @@
 {% block content %}
 <div class="row">
     <div class="col">
+        <h2 class="mt-4 mb-4">{{ race_object.name }}</h2>
 
-        <h2>{{ race_object.name }}</h2>
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Race Details</div>
-            <!-- Table -->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Distance</th>
-                        <th>Location</th>
-                        <th>Terrain</th>
-                        <th>Elevation Gain</th>
-                        <th>Date</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tdbody>
-                    <tr>
-                        <td>{{ race_object.distance }}</td>
-                        <td>{{ race_object.location }}</td>
-                        <td>{{ race_object.terrain }}</td>
-                        <td>{{ race_object.elevation_gain }}</td>
-                        <td>{{ race_object.date }}</td>
-                        <td><a href="{{ race.link }}">Link to race website</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="card mt-4">
+                <div class="card-header">Race Details</div>
+                <div class="card-body">
+                    <p><a href="{% url "edit_race" race_object.id %}">Edit this race</a></p>
+                    <div>Race Details</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Distance</th>
+                                <th>Location</th>
+                                <th>Terrain</th>
+                                <th>Elevation Gain</th>
+                                <th>Date</th>
+                                <th>Link</th>
+                            </tr>
+                        </thead>
+                        <tdbody>
+                            <tr>
+                                <td>{{ race_object.distance }}</td>
+                                <td>{{ race_object.location }}</td>
+                                <td>{{ race_object.terrain }}</td>
+                                <td>{{ race_object.elevation_gain }}</td>
+                                <td>{{ race_object.date }}</td>
+                                <td><a href="{{ race.link }}">Link to race website</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Race Result</div>
-            <!-- Table -->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Overall Place</th>
-                        <th>Division</th>
-                        <th>Division Place</th>
-                        <th>Rank</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ race_object.results.time }}</td>
-                        <td>{{ race_object.results.overall_place }}</td>
-                        <td>{{ race_object.results.division }}</td>
-                        <td>{{ race_object.results.division_place }}</td>
-                        <td>{{ race_object.results.overall_place|calculate_percentile:race_object.results.finishers }}%</td>
-                        <td><a href="{{ race_object.results.link }}">Link to results website</a></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="card mt-4">
+                <div class="card-header">Race Results</div>
+                <div class="card-body">
+                    <p><a href="{% url "edit_race" race_object.id %}">Edit this race</a></p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Overall Place</th>
+                                <th>Division</th>
+                                <th>Division Place</th>
+                                <th>Rank</th>
+                                <th>Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if race_object.results %}
+                            <tr>
+                                <td>{{ race_object.results.time }}</td>
+                                <td>{{ race_object.results.overall_place }}</td>
+                                <td>{{ race_object.results.division }}</td>
+                                <td>{{ race_object.results.division_place }}</td>
+                                <td>{{ race_object.results.overall_place|calculate_percentile:race_object.results.finishers }}%</td>
+                                <td><a href="{{ race_object.results.link }}">Link to results website</a></td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td>No results reported yet</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
     </div>

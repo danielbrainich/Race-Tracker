@@ -4,11 +4,6 @@ from datetime import date
 register = template.Library()
 
 @register.filter
-def in_the_future(value):
-    if value > date.today():
-        return True
-
-@register.filter
 def days_until(value):
     today = date.today()
     delta = value - today
@@ -21,4 +16,4 @@ def calculate_percentile(value, total):
             return round((value / total) * 100, 2)
     except (ValueError, ZeroDivisionError):
         pass
-    return 0 
+    return 0

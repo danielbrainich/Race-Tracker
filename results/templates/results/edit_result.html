@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit a Result
+{% endblock title %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-xs-10 col-sm-8 col-md-6">
+
+        <div class="form-group">
+            <h1>Edit a Result</h1>
+            {{ form.media }}
+            <form method="post">
+                {% csrf_token %}
+                {{ edit_result_form.as_p }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}
