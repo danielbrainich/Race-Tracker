@@ -13,7 +13,6 @@
             <div class="card-header">Race Details</div>
             <div class="card-body">
                 <p><a href="{% url "edit_race" race_object.id %}">Edit this race</a></p>
-                <div>Race Details</div>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -25,7 +24,7 @@
                             <th>Link</th>
                         </tr>
                     </thead>
-                    <tdbody>
+                    <tbody>
                         <tr>
                             <td>{{ race_object.get_distance_display }}</td>
                             <td>{{ race_object.location }}</td>
@@ -39,9 +38,11 @@
             </div>
         </div>
         <div class="card mt-4">
-            <div class="card-header">Race Results</div>
+            <div class="card-header">Race Result</div>
             <div class="card-body">
-                <p><a href="{% url "edit_race" race_object.id %}">Edit this race</a></p>
+                {% if race_object.result.id %}
+                <p><a href="{% url "results:edit_result" race_id=race_object.id result_id=race_object.result.id %}">Edit this result</a></p>
+                {% endif %}
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -53,8 +54,8 @@
                             <th>Link</th>
                         </tr>
                     </thead>
+                    {% if race_object.results %}
                     <tbody>
-                        {% if race_object.results %}
                         <tr>
                             <td>{{ race_object.results.time }}</td>
                             <td>{{ race_object.results.overall_place }}</td>
@@ -63,12 +64,14 @@
                             <td>{{ race_object.results.overall_place|calculate_percentile:race_object.results.finishers }}%</td>
                             <td><a href="{{ race_object.results.link }}">Link to results website</a></td>
                         </tr>
+                    </tbody>
                         {% else %}
+                    <tbody>
                         <tr>
                             <td>No results reported yet</td>
                         </tr>
-                        {% endif %}
                     </tbody>
+                    {% endif %}
                 </table>
             </div>
         </div>

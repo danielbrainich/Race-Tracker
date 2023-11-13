@@ -4,6 +4,7 @@ from races.models import Race
 from races.forms import AddRaceForm
 from datetime import date
 
+
 @login_required
 def list_races(request):
     race_list = Race.objects.filter(owner=request.user)
@@ -23,9 +24,9 @@ def list_races(request):
         "all_races": race_list,
         "future_races": future_races,
         "past_races": past_races,
-
     }
     return render(request, "races/race_list.html", context)
+
 
 @login_required
 def show_race(request, id):
@@ -51,6 +52,7 @@ def add_race(request):
         "add_race_form": form,
     }
     return render(request, "races/add_race.html", context)
+
 
 @login_required
 def edit_race(request, id):

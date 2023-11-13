@@ -6,5 +6,4 @@ urlpatterns = [
     path("<int:id>/", show_race, name="show_race"),
     path("add/", add_race, name="add_race"),
     path("<int:id>/edit/", edit_race, name="edit_race"),
-
 ]

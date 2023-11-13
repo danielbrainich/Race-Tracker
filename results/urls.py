@@ -6,5 +6,5 @@ app_name = "results"
 urlpatterns = [
     path("", list_results, name="list_results"),
     path("add/", add_result, name="add_result"),
-    path("<int:id>/edit/", edit_result, name="edit_result"),
+    path("edit/<int:race_id>/<int:result_id>/", edit_result, name="edit_result"),
 ]

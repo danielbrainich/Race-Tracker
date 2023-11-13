@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Race(models.Model):
 
+class Race(models.Model):
     DISTANCE_CHOICES = [
         ("5k", "5k"),
         ("10k", "10k"),
@@ -24,12 +24,12 @@ class Race(models.Model):
     distance = models.CharField(
         max_length=13,
         choices=DISTANCE_CHOICES,
-        )
+    )
     location = models.CharField(max_length=150)
     terrain = models.CharField(
         max_length=5,
         choices=TERRAIN_CHOICES,
-        )
+    )
     elevation_gain = models.PositiveIntegerField()
     date = models.DateField()
     link = models.URLField(null=True)

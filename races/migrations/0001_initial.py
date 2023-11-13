@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,16 +14,53 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Race',
+            name="Race",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=150)),
-                ('distance', models.CharField(choices=[('5k', '5k'), ('10k', '10k'), ('half_marathon', 'Half Marathon'), ('marathon', 'Marathon'), ('30k', '30k'), ('35k', '35k'), ('50k', '50k'), ('50_mile', '50 mile'), ('100k', '100k'), ('100_mile', '100 mile')], max_length=13)),
-                ('location', models.CharField(max_length=150)),
-                ('terrain', models.CharField(choices=[('trail', 'Trail'), ('road', 'Road')], max_length=5)),
-                ('elevation_gain', models.PositiveIntegerField()),
-                ('date', models.DateField()),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='projects', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=150)),
+                (
+                    "distance",
+                    models.CharField(
+                        choices=[
+                            ("5k", "5k"),
+                            ("10k", "10k"),
+                            ("half_marathon", "Half Marathon"),
+                            ("marathon", "Marathon"),
+                            ("30k", "30k"),
+                            ("35k", "35k"),
+                            ("50k", "50k"),
+                            ("50_mile", "50 mile"),
+                            ("100k", "100k"),
+                            ("100_mile", "100 mile"),
+                        ],
+                        max_length=13,
+                    ),
+                ),
+                ("location", models.CharField(max_length=150)),
+                (
+                    "terrain",
+                    models.CharField(
+                        choices=[("trail", "Trail"), ("road", "Road")], max_length=5
+                    ),
+                ),
+                ("elevation_gain", models.PositiveIntegerField()),
+                ("date", models.DateField()),
+                (
+                    "owner",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="projects",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

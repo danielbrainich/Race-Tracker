@@ -1,6 +1,7 @@
 from django.contrib import admin
 from races.models import Race
 
+
 @admin.register(Race)
 class RaceAdmin(admin.ModelAdmin):
     list_display = [
@@ -11,4 +12,4 @@ class RaceAdmin(admin.ModelAdmin):
         "elevation_gain",
         "date",
         "id",
-        ]
+    ]

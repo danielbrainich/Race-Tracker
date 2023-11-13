@@ -3,11 +3,13 @@ from datetime import date
 
 register = template.Library()
 
+
 @register.filter
 def days_until(value):
     today = date.today()
     delta = value - today
-    return (delta.days)
+    return delta.days
+
 
 @register.filter
 def calculate_percentile(value, total):

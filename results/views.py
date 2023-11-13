@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from results.models import Result
-# from races.models import Race
+from races.models import Race
 from results.forms import AddResultForm
 from django.contrib.auth.decorators import login_required
 
@@ -28,18 +28,21 @@ def list_results(request):
     context = {"result_list": result}
     return render(request, "results/result_list.html", context)
 
+
 @login_required
-def edit_result(request, id):
-    race = get_object_or_404(Race, id=id)
-    result =race.result
+def edit_result(request, race_id, result_id):
+    race_instance = get_object_or_404(Race, id=race_id)
+    result_instance = get_object_or_404(Result, id=result_id, race=race_instance)
+
 
     if request.method == "POST":
-        form = EditResultForm(request.POST, instance=result)
+        form = AddResultForm(request.POST, instance=result_instance)
         if form.is_valid():
             form.save()
-            return redirect("list_results", id=id)
+            return redirect("home")
     else:
-        form = AddResultForm(instance=result)
+        form = AddResultForm(instance=result_instance)
+
     context = {
         "edit_result_form": form,
     }

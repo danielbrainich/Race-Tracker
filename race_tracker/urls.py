@@ -18,13 +18,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
 
+
 def redirect_home(request):
     return redirect("list_races")
+
 
 urlpatterns = [
     path("", redirect_home, name="home"),
     path("accounts/", include("accounts.urls")),
     path("results/", include("results.urls", namespace="results")),
     path("races/", include("races.urls")),
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
 ]

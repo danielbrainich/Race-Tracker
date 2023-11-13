@@ -1,6 +1,7 @@
 from django.contrib import admin
 from results.models import Result
 
+
 @admin.register(Result)
 class ResultAdmin(admin.ModelAdmin):
     list_display = [
@@ -11,4 +12,4 @@ class ResultAdmin(admin.ModelAdmin):
         "finishers",
         "race",
         "id",
-        ]
+    ]
