@@ -13,7 +13,7 @@ def add_result(request):
             result = form.save(False)
             result.owner = request.user
             result.save()
-            return redirect("list_results")
+            return redirect("results:list_results")
     else:
         form = AddResultForm()
     context = {

@@ -3,8 +3,18 @@
 
 // Include any default variable overrides here (though functions won't be available)
 
+$primary: #ec8005;
+$light: white;
 
-$primary: green;
+@import "../../../node_modules/bootstrap/scss/_functions";
+@import "../../../node_modules/bootstrap/scss/_variables";
+
+$custom-theme-colors: (
+    "primary-light": #fcc88c,
+    "black": black,
+);
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
 
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 

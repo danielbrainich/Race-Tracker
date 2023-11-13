@@ -31,7 +31,6 @@ def list_races(request):
 @login_required
 def show_race(request, id):
     race = get_object_or_404(Race, id=id)
-    print(race.result)
     context = {
         "race_object": race,
     }

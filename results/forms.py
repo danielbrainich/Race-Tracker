@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from races.models import Race
 from results.models import Result
 from django import forms
 
@@ -16,8 +17,13 @@ class AddResultForm(ModelForm):
             "link",
         ]
 
+        race = forms.ModelChoiceField(
+            queryset=Race.objects.all()
+
+        )
+
         widgets = {
-            "race": forms.TextInput(attrs={"class": "form-control"}),
+            "race": forms.Select(attrs={"class": "form-control"}),
             "time": forms.NumberInput(attrs={"class": "form-control"}),
             "overall_place": forms.NumberInput(attrs={"class": "form-control"}),
             "division": forms.Select(attrs={"class": "form-control"}),
