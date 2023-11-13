@@ -20,11 +20,11 @@ class Result(models.Model):
     link = models.URLField(null=True)
     race = models.OneToOneField(
         Race,
-        related_name="results",
+        related_name="result",
         on_delete=models.CASCADE,
     )
     owner = models.ForeignKey(
         User,
-        related_name="results",
+        related_name="result",
         on_delete=models.CASCADE,
     )
