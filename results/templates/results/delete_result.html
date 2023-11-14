@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Edit a Result
+Delete a Result
 {% endblock title %}
 
 {% block content %}
@@ -10,13 +10,15 @@ Edit a Result
     <div class="col-xs-10 col-sm-8 col-md-6">
 
         <div class="form-group">
-            <h2>Edit a Result</h2>
+            <h2>Delete a Result</h2>
             {{ form.media }}
-            <form method="POST">
+            <form method="post">
                 {% csrf_token %}
-                {{ edit_result_form.as_p }}
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <p>Are you sure want to delete this item?</p>
+                <button type="submit" class="btn btn-primary">Yes</button>
+                <p class="mt-5">No,<a href="/"> take me home</a>
             </form>
+
         </div>
 
     </div>

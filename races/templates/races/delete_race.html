@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Edit a Race
+Delete a Race
 {% endblock title %}
 
 {% block content %}
@@ -10,16 +10,21 @@ Edit a Race
     <div class="col-xs-10 col-sm-8 col-md-6">
 
         <div class="form-group">
-            <h2>Edit a Race</h2>
+            <h2>Delete a Race</h2>
             {{ form.media }}
             <form method="post">
                 {% csrf_token %}
-                {{ edit_race_form.as_p }}
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <p>Are you sure want to delete this item?</p>
+                <button type="submit" class="btn btn-primary">Yes</button>
+                <p class="mt-5">No,<a href="/"> take me home</a>
             </form>
+
         </div>
 
     </div>
 </div>
 
 {% endblock content %}
+
+
+<td><a href="{% url "show_race" race.id %}">{{ race.name }}</a></td>

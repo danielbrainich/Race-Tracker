@@ -34,7 +34,6 @@ def edit_result(request, race_id, result_id):
     race_instance = get_object_or_404(Race, id=race_id)
     result_instance = get_object_or_404(Result, id=result_id, race=race_instance)
 
-
     if request.method == "POST":
         form = AddResultForm(request.POST, instance=result_instance)
         if form.is_valid():
@@ -47,3 +46,16 @@ def edit_result(request, race_id, result_id):
         "edit_result_form": form,
     }
     return render(request, "results/edit_result.html", context)
+
+@login_required
+def delete_result(request, race_id, result_id):
+    race_instance = get_object_or_404(Race, id=race_id)
+    result_instance = get_object_or_404(Result, id=result_id, race=race_instance)
+
+    if request.method == "POST":
+        result_instance.delete()
+        return redirect("home")
+
+    context = {}
+
+    return render(request, "results/delete_result.html", context)

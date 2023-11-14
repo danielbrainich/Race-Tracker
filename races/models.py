@@ -20,19 +20,34 @@ class Race(models.Model):
         ("road", "Road"),
     ]
 
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150,
+        help_text = "first last",
+    )
+
     distance = models.CharField(
         max_length=13,
         choices=DISTANCE_CHOICES,
     )
-    location = models.CharField(max_length=150)
+
+    location = models.CharField(max_length=150,
+        help_text = "city, state",
+    )
     terrain = models.CharField(
         max_length=5,
         choices=TERRAIN_CHOICES,
     )
-    elevation_gain = models.PositiveIntegerField()
-    date = models.DateField()
-    link = models.URLField(null=True)
+    elevation_gain = models.PositiveIntegerField(
+        help_text = "in feet"
+    )
+    date = models.DateField(
+        help_text = "mm/dd/yyyy"
+    )
+
+    link = models.URLField(null=True,
+        help_text = "www.website.com"
+    )
+
+
     owner = models.ForeignKey(
         User,
         related_name="projects",

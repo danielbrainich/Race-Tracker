@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load custom_tags %}
+{% load static %}
 
 {% block title %}
     {{ race_object.name }}
@@ -12,8 +13,11 @@
         <div class="card mt-4">
             <div class="card-header">Race Details</div>
             <div class="card-body">
-                <p><a href="{% url "edit_race" race_object.id %}">Edit this race</a></p>
-                <table class="table table-hover">
+                <ul class="p-0">
+                    <li><a href="{% url "edit_race" race_object.id %}">Edit this race</a></li>
+                    <li><a href="{% url "delete_race" race_object.id %}">Delete this race</a></li>
+                </ul>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Distance</th>
@@ -31,7 +35,7 @@
                             <td>{{ race_object.get_terrain_display }}</td>
                             <td>{{ race_object.elevation_gain }}</td>
                             <td>{{ race_object.date }}</td>
-                            <td><a href="{{ race.link }}">Link to race website</a></td>
+                            <td><a href="{{ race.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -41,11 +45,16 @@
             <div class="card-header">Race Result</div>
             <div class="card-body">
                 {% if race_object.result %}
-                <p><a href="{% url "results:edit_result" race_id=race_object.id result_id=race_object.result.id %}">Edit this result</a></p>
+                <ul class="p-0">
+                    <li><a href="{% url "results:edit_result" race_id=race_object.id result_id=race_object.result.id %}">Edit this result</a></li>
+                    <li><a href="{% url "results:delete_result" race_id=race_object.id result_id=race_object.result.id %}">Delete this result</a></li>
+                </ul>
                 {% else %}
-                <p><a href="{% url "results:add_result" %}">Add a result</a></p>
+                <ul class="p-0">
+                    <li><a href="{% url "results:add_result" %}">Add a result</a></li>
+                </ul>
                 {% endif %}
-                <table class="table table-hover">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Time</th>
@@ -63,8 +72,8 @@
                             <td>{{ race_object.result.overall_place }}</td>
                             <td>{{ race_object.result.get_division_display }}</td>
                             <td>{{ race_object.result.division_place }}</td>
-                            <td>{{ race_object.result.overall_place|calculate_percentile:race_object.result.finishers }}%</td>
-                            <td><a href="{{ race_object.result.link }}">Link to results website</a></td>
+                            <td>{{ race_object.result.overall_place|calculate_percentile:race_object.result.finishers }}</td>
+                            <td><a href="{{ race_object.result.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
                         </tr>
                     </tbody>
                         {% else %}

@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load custom_tags %}
 
+{% load static %}
+
 {% block title %}
     My Races
 {% endblock title %}
@@ -26,9 +28,9 @@
 
             <div class="tab-pane fade show active" id="all-races-tab-pane" role="tabpanel" aria-labelledby="all-races-tab" tabindex="0">
                 <div class="card mt-4">
-                <div class="card-header bg-primary-light">All Races</div>
+                <div class="card-header">All Races</div>
                     <div class="card-body">
-                        <table class="table table-hover">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -50,7 +52,7 @@
                                     <td>{{ race.get_terrain_display }}</td>
                                     <td>{{ race.elevation_gain }}</td>
                                     <td>{{ race.date }}</td>
-                                    <td><a href="{{ race.link }}">Link to race website</a></td>
+                                    <td><a href="{{ race.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
                                 </tr>
                                 {% endfor %}
                                 {% else %}
@@ -72,9 +74,9 @@
 
             <div class="tab-pane fade" id="upcoming-races-tab-pane" role="tabpanel" aria-labelledby="upcoming-races-tab" tabindex="0">
                 <div class="card mt-4">
-                    <div class="card-header bg-primary-light">Upcoming Races</div>
+                    <div class="card-header">Upcoming Races</div>
                     <div class="card-body">
-                        <table class="table table-hover">
+                        <table class="table table">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -96,7 +98,7 @@
                                     <td>{{ race.get_terrain_display }}</td>
                                     <td>{{ race.elevation_gain }}</td>
                                     <td>{{ race.date }}</td>
-                                    <td><a href="{{ race.link }}">Link to race website</a></td>
+                                    <td><a href="{{ race.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
                                 </tr>
                                 {% endfor %}
                                 {% else %}
@@ -118,9 +120,9 @@
 
             <div class="tab-pane fade" id="past-races-tab-pane" role="tabpanel" aria-labelledby="past-races-tab" tabindex="0">
                 <div class="card mt-4">
-                    <div class="card-header bg-primary-light">Past Races</div>
+                    <div class="card-header">Past Races</div>
                     <div class="card-body">
-                        <table class="table table-hover">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -142,7 +144,7 @@
                                     <td>{{ race.get_terrain_display }}</td>
                                     <td>{{ race.elevation_gain }}</td>
                                     <td>{{ race.date }}</td>
-                                    <td><a href="{{ race.link }}">Link to race website</a></td>
+                                    <td><a href="{{ race.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
                                 </tr>
                                 {% endfor %}
                                 {% else %}

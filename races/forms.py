@@ -6,6 +6,7 @@ from django import forms
 class AddRaceForm(ModelForm):
     class Meta:
         model = Race
+
         fields = [
             "name",
             "distance",

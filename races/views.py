@@ -68,3 +68,15 @@ def edit_race(request, id):
         "edit_race_form": form,
     }
     return render(request, "races/edit_race.html", context)
+
+@login_required
+def delete_race(request, id):
+    race = get_object_or_404(Race, id=id)
+
+    if request.method == "POST":
+        race.delete()
+        return redirect("home")
+
+    context = {}
+
+    return render(request, "races/delete_race.html", context)
