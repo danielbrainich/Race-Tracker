@@ -28,7 +28,6 @@ def list_results(request):
     context = {"result_list": result}
     return render(request, "results/result_list.html", context)
 
-
 @login_required
 def edit_result(request, race_id, result_id):
     race_instance = get_object_or_404(Race, id=race_id)

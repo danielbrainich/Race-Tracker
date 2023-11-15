@@ -3,9 +3,9 @@
 
 // Include any default variable overrides here (though functions won't be available)
 
-$primary: #B8860B;
+$primary: #8040c1;
 $light: white;
-$gray-100: #FFD700;
+$gray-100: #d8b2ff;
 
 @import "../../../node_modules/bootstrap/scss/_functions";
 @import "../../../node_modules/bootstrap/scss/_variables";
@@ -33,7 +33,7 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 }
 
 .card-header {
-    background-color: #DAA520;
+    background-color: #9a5fd6;
     color: white;
 }
 

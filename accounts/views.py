@@ -1,7 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
-from accounts.forms import LoginForm, SignupForm
+from django.urls import reverse_lazy
+from accounts.forms import LoginForm, SignupForm, Custom_Password_Change_Form
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
 
 
 def account_login(request):
@@ -25,7 +31,7 @@ def account_login(request):
     }
     return render(request, "accounts/login.html", context)
 
-
+@login_required
 def account_logout(request):
     logout(request)
     return redirect("login")
@@ -55,3 +61,13 @@ def account_signup(request):
         "signup_form": signup_form,
     }
     return render(request, "accounts/signup.html", context)
+
+
+
+class PasswordsChangeView(PasswordChangeView, LoginRequiredMixin, TemplateView):
+    form_class = Custom_Password_Change_Form
+    success_url = reverse_lazy("password_success")
+
+@login_required
+def password_success(request):
+    return render(request, "accounts/password_success.html", {})

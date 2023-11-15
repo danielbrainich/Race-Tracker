@@ -31,6 +31,8 @@ def list_races(request):
 @login_required
 def show_race(request, id):
     race = get_object_or_404(Race, id=id)
+    if request.user != race.owner:
+        return redirect("home")
     context = {
         "race_object": race,
     }
