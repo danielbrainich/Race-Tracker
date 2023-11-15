@@ -11,7 +11,13 @@ Add a Race
         <h2 class="mt-4 mb-4">Add a Race</h2>
         <form method="post">
             {% csrf_token %}
-            {{ add_race_form.as_p }}
+            {% for field in add_race_form %}
+            <div class="mb-3 row">
+                <div>{{ field.errors }}</div>
+                <div class="col-3">{{ field.label_tag }}</div>
+                <div class="col">{{ field }}</div>
+            </div>
+            {% endfor %}
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

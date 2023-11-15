@@ -33,7 +33,7 @@
                             <td>{{ race_object.get_distance_display }}</td>
                             <td>{{ race_object.location }}</td>
                             <td>{{ race_object.get_terrain_display }}</td>
-                            <td>{{ race_object.elevation_gain }}</td>
+                            <td>{{ race_object.elevation_gain }} feet</td>
                             <td>{{ race_object.date }}</td>
                             <td><a href="{{ race.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
                         </tr>
@@ -72,7 +72,7 @@
                             <td>{{ race_object.result.overall_place }}</td>
                             <td>{{ race_object.result.get_division_display }}</td>
                             <td>{{ race_object.result.division_place }}</td>
-                            <td>{{ race_object.result.overall_place|calculate_percentile:race_object.result.finishers }}</td>
+                            <td>{{ race_object.result.overall_place|calculate_percentile:race_object.result.finishers }}%</td>
                             <td><a href="{{ race_object.result.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
                         </tr>
                     </tbody>

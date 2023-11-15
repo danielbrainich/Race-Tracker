@@ -35,7 +35,7 @@
                             <td>{{ result.overall_place }}</td>
                             <td>{{ result.get_division_display }}</td>
                             <td>{{ result.division_place }}</td>
-                            <td>{{ result.overall_place|calculate_percentile:result.finishers }}</td>
+                            <td>{{ result.overall_place|calculate_percentile:result.finishers }}%</td>
                             <td><a href="{{ result.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
                         </tr>
                         {% endfor %}

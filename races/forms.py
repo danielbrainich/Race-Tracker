@@ -18,11 +18,11 @@ class AddRaceForm(ModelForm):
         ]
 
         widgets = {
-            "name": forms.TextInput(attrs={"class": "form-control"}),
-            "distance": forms.Select(attrs={"class": "form-control"}),
-            "location": forms.TextInput(attrs={"class": "form-control"}),
-            "terrain": forms.Select(attrs={"class": "form-control"}),
-            "elevation_gain": forms.NumberInput(attrs={"class": "form-control"}),
-            "date": forms.DateInput(attrs={"class": "form-control"}),
-            "link": forms.URLInput(attrs={"class": "form-control"}),
+            "name": forms.TextInput(attrs={"class": "form-control", "placeholder": ""}),
+            "distance": forms.Select(attrs={"class": "form-control", "placeholder": ""}),
+            "location": forms.TextInput(attrs={"class": "form-control", "placeholder": "City, State"}),
+            "terrain": forms.Select(attrs={"class": "form-control", "placeholder": "Terrain"}),
+            "elevation_gain": forms.NumberInput(attrs={"class": "form-control", "placeholder": "In feet"}),
+            "date": forms.DateInput(attrs={"class": "form-control", "placeholder": "mm/dd/yyyy"}),
+            "link": forms.URLInput(attrs={"class": "form-control", "placeholder": "http://www.myrace.com"}),
         }

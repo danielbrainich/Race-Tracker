@@ -10,11 +10,17 @@ Edit a Result
     <div class="col-xs-10 col-sm-8 col-md-6">
 
         <div class="form-group">
-            <h2>Edit a Result</h2>
+            <h2 class="mt-4 mb-4">Edit a Result</h2>
             {{ form.media }}
             <form method="POST">
                 {% csrf_token %}
-                {{ edit_result_form.as_p }}
+                {% for field in edit_result_form %}
+                <div class="mb-3 row">
+                    <div>{{ field.errors }}</div>
+                    <div class="col-3">{{ field.label_tag }}</div>
+                    <div class="col">{{ field }}</div>
+                </div>
+                {% endfor %}
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

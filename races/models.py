@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Race(models.Model):
     DISTANCE_CHOICES = [
+        # (None, ""),
         ("5k", "5k"),
         ("10k", "10k"),
         ("half_marathon", "Half Marathon"),
@@ -16,38 +17,24 @@ class Race(models.Model):
         ("100_mile", "100 mile"),
     ]
     TERRAIN_CHOICES = [
+        # (None, ""),
         ("trail", "Trail"),
         ("road", "Road"),
     ]
 
-    name = models.CharField(max_length=150,
-        help_text = "first last",
-    )
-
+    name = models.CharField(max_length=150)
     distance = models.CharField(
         max_length=13,
         choices=DISTANCE_CHOICES,
     )
-
-    location = models.CharField(max_length=150,
-        help_text = "city, state",
-    )
+    location = models.CharField(max_length=150)
     terrain = models.CharField(
         max_length=5,
         choices=TERRAIN_CHOICES,
     )
-    elevation_gain = models.PositiveIntegerField(
-        help_text = "in feet"
-    )
-    date = models.DateField(
-        help_text = "mm/dd/yyyy"
-    )
-
-    link = models.URLField(null=True,
-        help_text = "www.website.com"
-    )
-
-
+    elevation_gain = models.PositiveIntegerField()
+    date = models.DateField()
+    link = models.URLField(null=True)
     owner = models.ForeignKey(
         User,
         related_name="projects",
