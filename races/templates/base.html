@@ -41,8 +41,8 @@
                         My Results
                       </a>
                       <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url "results:list_results" %}">My Results</a></li>
-                        <li><a class="dropdown-item" href="{% url "results:add_result" %}">Add a Result</a></li>
+                        <li><a class="dropdown-item" href="{% url "list_results" %}">My Results</a></li>
+                        <li><a class="dropdown-item" href="{% url "add_result" %}">Add a Result</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -88,7 +88,7 @@
       <div class="row">
         <div class="col">
 
-          <footer class="mt-5 d-flex flex-column justify-content-center align-items-center p-3">
+          <footer class=" sticky mt-5 d-flex flex-column justify-content-center align-items-center p-3 fixed-bottom">
             <div class="p-2">
               Designed and coded by me, Daniel Brainich.
             </div>

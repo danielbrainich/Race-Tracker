@@ -14,9 +14,9 @@ Delete a Result
             {{ form.media }}
             <form method="post">
                 {% csrf_token %}
-                <p>Are you sure want to delete this item?</p>
+                <p>Are you sure want to delete this result?</p>
                 <button type="submit" class="btn btn-primary">Yes</button>
-                <p class="mt-5">No,<a href="/"> take me home</a>
+                <a class="btn btn-secondary" href="/">Cancel</a>
             </form>
 
         </div>

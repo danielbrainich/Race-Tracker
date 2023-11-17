@@ -24,5 +24,5 @@ class AddRaceForm(ModelForm):
             "terrain": forms.Select(attrs={"class": "form-control", "placeholder": "Terrain"}),
             "elevation_gain": forms.NumberInput(attrs={"class": "form-control", "placeholder": "In feet"}),
             "date": forms.DateInput(attrs={"class": "form-control", "placeholder": "mm/dd/yyyy"}),
-            "link": forms.URLInput(attrs={"class": "form-control", "placeholder": "http://www.myrace.com"}),
+            "link": forms.URLInput(attrs={"class": "form-control", "placeholder": "https://www.myrace.com"}),
         }

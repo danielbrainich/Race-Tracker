@@ -7,7 +7,6 @@ DIVISION_CHOICES = [
     ("f", "F"),
 ]
 
-
 class Result(models.Model):
     time = models.DurationField()
     overall_place = models.SmallIntegerField()

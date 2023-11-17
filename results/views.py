@@ -16,8 +16,12 @@ def add_result(request):
             return redirect("results:list_results")
     else:
         form = AddResultForm()
+        print(form.fields)
+        form.fields["race"].queryset=Race.objects.filter(owner=request.user, result=None)
+
     context = {
         "add_result_form": form,
+
     }
     return render(request, "results/add_result.html", context)
 

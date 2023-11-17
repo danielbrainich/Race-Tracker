@@ -10,87 +10,102 @@
 <div class="row">
     <div class="col">
         <h2 class="mt-4 mb-4">{{ race_object.name }}</h2>
-        <div class="card mt-4">
-            <div class="card-header">Race Details</div>
-            <div class="card-body">
-                <ul class="p-0">
-                    <li><a href="{% url "edit_race" race_object.id %}">Edit this race</a></li>
-                    <li><a href="{% url "delete_race" race_object.id %}">Delete this race</a></li>
-                </ul>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Distance</th>
-                            <th>Location</th>
-                            <th>Terrain</th>
-                            <th>Elevation Gain</th>
-                            <th>Date</th>
-                            <th>Link</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ race_object.get_distance_display }}</td>
-                            <td>{{ race_object.location }}</td>
-                            <td>{{ race_object.get_terrain_display }}</td>
-                            <td>{{ race_object.elevation_gain }} feet</td>
-                            <td>{{ race_object.date }}</td>
-                            <td><a href="{{ race.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#race-details-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Race Details</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#race-result-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Race Result</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+
+            <div class="tab-pane fade show active" id="race-details-tab-pane" role="tabpanel" aria-labelledby="all-races-tab" tabindex="0">
+                <div class="card mt-4">
+                    <div class="card-header">Race Details</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Distance</th>
+                                    <th>Location</th>
+                                    <th>Terrain</th>
+                                    <th>Elevation Gain</th>
+                                    <th>Date</th>
+                                    <th>Link</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ race_object.get_distance_display }}</td>
+                                    <td>{{ race_object.location }}</td>
+                                    <td>{{ race_object.get_terrain_display }}</td>
+                                    <td>{{ race_object.elevation_gain }} feet</td>
+                                    <td>{{ race_object.date }}</td>
+                                    <td><a href="{{ race_object.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a class="btn btn-primary btn-sm" href="{% url "edit_race" race_object.id %}">Edit this race</a>
+                        <a class="btn btn-primary btn-sm" href="{% url "delete_race" race_object.id %}">Delete this race</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="card mt-4">
-            <div class="card-header">Race Result</div>
-            <div class="card-body">
-                {% if race_object.result %}
-                <ul class="p-0">
-                    <li><a href="{% url "results:edit_result" race_id=race_object.id result_id=race_object.result.id %}">Edit this result</a></li>
-                    <li><a href="{% url "results:delete_result" race_id=race_object.id result_id=race_object.result.id %}">Delete this result</a></li>
-                </ul>
-                {% else %}
-                <ul class="p-0">
-                    <li><a href="{% url "results:add_result" %}">Add a result</a></li>
-                </ul>
-                {% endif %}
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Overall Place</th>
-                            <th>Division</th>
-                            <th>Division Place</th>
-                            <th>Rank</th>
-                            <th>Link</th>
-                        </tr>
-                    </thead>
-                    {% if race_object.result %}
-                    <tbody>
-                        <tr>
-                            <td>{{ race_object.result.time }}</td>
-                            <td>{{ race_object.result.overall_place }}</td>
-                            <td>{{ race_object.result.get_division_display }}</td>
-                            <td>{{ race_object.result.division_place }}</td>
-                            <td>{{ race_object.result.overall_place|calculate_percentile:race_object.result.finishers }}%</td>
-                            <td><a href="{{ race_object.result.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
-                        </tr>
-                    </tbody>
+
+            <div class="tab-pane fade" id="race-result-tab-pane" role="tabpanel" aria-labelledby="all-races-tab" tabindex="1">
+                <div class="card mt-4">
+                    <div class="card-header">Race Result</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Overall Place</th>
+                                    <th>Division</th>
+                                    <th>Division Place</th>
+                                    <th>Rank</th>
+                                    <th>Link</th>
+                                </tr>
+                            </thead>
+                            {% if race_object.result %}
+                            <tbody>
+                                <tr>
+                                    <td>{{ race_object.result.time }}</td>
+                                    <td>{{ race_object.result.overall_place }}</td>
+                                    <td>{{ race_object.result.get_division_display }}</td>
+                                    <td>{{ race_object.result.division_place }}</td>
+                                    <td>{{ race_object.result.overall_place|calculate_percentile:race_object.result.finishers }}%</td>
+                                    <td><a href="{{ race_object.result.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
+                                </tr>
+                            </tbody>
+                            {% else %}
+                            <tbody>
+                                <tr>
+                                    <td>No results reported yet</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                            {% endif %}
+                        </table>
+                        {% if race_object.result %}
+                            <a class="btn btn-primary btn-sm" href="{% url "edit_result" race_id=race_object.id result_id=race_object.result.id %}">Edit this result</a>
+                            <a class="btn btn-primary btn-sm" href="{% url "delete_result" race_id=race_object.id result_id=race_object.result.id %}">Delete this result</a>
                         {% else %}
-                    <tbody>
-                        <tr>
-                            <td>No results reported yet</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                    {% endif %}
-                </table>
+                            <a class="btn btn-primary btn-sm" href="{% url "add_result" %}">Add a result</a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock content %}

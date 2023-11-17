@@ -1,7 +1,7 @@
 from django.urls import path
 from results.views import add_result, list_results, edit_result, delete_result
 
-app_name = "results"
+# app_name = "results"
 
 urlpatterns = [
     path("", list_results, name="list_results"),

@@ -5,6 +5,7 @@ from django import forms
 
 
 class AddResultForm(ModelForm):
+
     class Meta:
         model = Result
 
@@ -20,10 +21,11 @@ class AddResultForm(ModelForm):
 
         widgets = {
             "race": forms.Select(attrs={"class": "form-control"}),
-            "time": forms.NumberInput(attrs={"class": "form-control", "placeholder": "hh:mm:ss"}),
+            "time": forms.NumberInput(attrs={"class": "form-control", "placeholder": "hhmmss"}),
             "overall_place": forms.NumberInput(attrs={"class": "form-control"}),
             "division": forms.Select(attrs={"class": "form-control"}),
             "division_place": forms.NumberInput(attrs={"class": "form-control"}),
             "finishers": forms.NumberInput(attrs={"class": "form-control"}),
-            "link": forms.URLInput(attrs={"class": "form-control", "placeholder": "http://www.myrace.com"}),
+            "link": forms.URLInput(attrs={"class": "form-control", "placeholder": "https://www.myrace.com"}),
         }
+
