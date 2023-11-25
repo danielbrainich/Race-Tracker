@@ -3,9 +3,9 @@
 
 // Include any default variable overrides here (though functions won't be available)
 
-$primary: #8040c1;
+$primary: #587644;
 $light: white;
-$gray-100: #d8b2ff;
+$gray-100: #C9E2B9;
 
 @import "../../../node_modules/bootstrap/scss/_functions";
 @import "../../../node_modules/bootstrap/scss/_variables";
@@ -17,8 +17,6 @@ $custom-theme-colors: (
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 
 @import "../../../node_modules/bootstrap/scss/bootstrap";
-
-// Then add additional custom code here
 
 .btn {
     color: white;
@@ -33,8 +31,7 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 }
 
 .card-header {
-    background-color: #9a5fd6;
-    color: white;
+    background-color: #C9E2B9;
 }
 
 a {
