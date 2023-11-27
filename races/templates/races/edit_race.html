@@ -7,26 +7,25 @@ Edit a Race
 {% block content %}
 
 <div class="row">
-    <div class="col-xs-10 col-sm-8 col-md-6">
-
-        <div class="form-group">
-            <h2 class="mt-4 mb-4">Edit a Race</h2>
-            {{ form.media }}
-            <form method="post">
-                {% csrf_token %}
-                {% for field in edit_race_form %}
-                <div class="mb-3 row">
-                    <div>{{ field.errors }}</div>
-                    <div class="col-3">{{ field.label_tag }}</div>
-                    <div class="col">{{ field }}</div>
-                </div>
-                {% endfor %}
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a class="btn btn-secondary" href="/">Cancel</a>
-            </form>
+    <div class=col></div>
+    <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+        <div class="d-flex flex-column align-items-center">
+            <h2 class="mt-4">Edit Race</h2>
         </div>
-
+        <form class="mt-4" method="post">
+            {% csrf_token %}
+            {% for field in edit_race_form %}
+            <div class="mb-3 row">
+                <div>{{ field.errors }}</div>
+                <div class="col-3">{{ field.label_tag }}</div>
+                <div class="col">{{ field }}</div>
+            </div>
+            {% endfor %}
+            <button type="submit" class="mt-4 mx-1 btn btn-outline-primary">Submit</button>
+            <a class="btn btn-outline-secondary mt-4 mx-1" href="/">Cancel</a>
+        </form>
     </div>
+    <div class="col"></div>
 </div>
 
 {% endblock content %}

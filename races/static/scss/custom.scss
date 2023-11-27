@@ -2,10 +2,7 @@
 // Option A: Include all of Bootstrap
 
 // Include any default variable overrides here (though functions won't be available)
-
-$primary: #587644;
-$light: white;
-$gray-100: #C9E2B9;
+$primary: #7FC844;
 
 @import "../../../node_modules/bootstrap/scss/_functions";
 @import "../../../node_modules/bootstrap/scss/_variables";
@@ -18,20 +15,17 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
-.btn {
-    color: white;
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
 }
 
-.btn:hover {
-   color: white
-}
-
-.btn:active {
-    color: white;
-}
-
-.card-header {
-    background-color: #C9E2B9;
+h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #b2de8f;;
 }
 
 a {
@@ -42,10 +36,41 @@ a:hover {
     text-decoration: none;
 }
 
-.helptext {
-    color: grey;
-}
-
 ul {
     list-style: none;
+}
+
+.logo {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.list-card:hover {
+    background-color: $gray-800;
+}
+
+.card-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: white;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-body div,
+.light-gray {
+    color: $gray-500;
+}
+
+
+.light-green {
+    color: #b2de8f;
+}
+
+.min-vh-70 {
+    min-height: 70vh;
 }
