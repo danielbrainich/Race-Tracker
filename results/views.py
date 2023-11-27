@@ -13,7 +13,7 @@ def add_result(request):
             result = form.save(False)
             result.owner = request.user
             result.save()
-            return redirect("results:list_results")
+            return redirect("home")
     else:
         form = AddResultForm()
         print(form.fields)
@@ -47,6 +47,8 @@ def edit_result(request, race_id, result_id):
 
     context = {
         "edit_result_form": form,
+        "race": race_instance,
+
     }
     return render(request, "results/edit_result.html", context)
 

@@ -12020,11 +12020,12 @@ ul {
 
 .card-body {
   padding: 1.5rem;
+  color: #dee2e6;
 }
 
 .card-body div,
 .light-gray {
-  color: #adb5bd;
+  color: #dee2e6;
 }
 
 .light-green {

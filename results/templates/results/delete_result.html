@@ -1,26 +1,26 @@
 {% extends "base.html" %}
 
 {% block title %}
-Delete a Result
+Delete a Race
 {% endblock title %}
 
 {% block content %}
 
-<div class="row">
-    <div class="col-xs-10 col-sm-8 col-md-6">
-
-        <div class="form-group">
-            <h2>Delete a Result</h2>
-            {{ form.media }}
-            <form method="post">
-                {% csrf_token %}
-                <p>Are you sure want to delete this result?</p>
-                <button type="submit" class="btn btn-primary">Yes</button>
-                <a class="btn btn-secondary" href="/">Cancel</a>
-            </form>
-
+<div class="container min-vh-70 d-flex align-items-center justify-content-center">
+    <div class="row">
+        <div class="col">
+            <div class="align-items-center">
+                <h2 class="mt-4">Delete Result</h2>
+            </div>
+            <div class="mt-4">
+                <form method="post">
+                    {% csrf_token %}
+                    <p>Are you sure want to delete this result?</p>
+                    <button type="submit" class="mt-4 mx-1 btn btn-outline-primary">Yes</button>
+                    <a class="btn btn-outline-secondary mt-4 mx-1" href="/">Cancel</a>
+                </form>
+            </div>
         </div>
-
     </div>
 </div>
 

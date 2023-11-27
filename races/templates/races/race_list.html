@@ -91,7 +91,7 @@
             <div class="tab-pane fade" id="past-races-tab-pane" role="tabpanel" aria-labelledby="past-races-tab" tabindex="0">
                 <div class="row">
                     <div class="mt-4 mx-2" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Add a race" data-bs-trigger="hover">
-                        <a href="{% url "add_race" %}"> <span class="material-symbols-outlined">add</span></a>
+                            <span><a href="{% url "add_race" %}"> <span class="material-symbols-outlined">add</span></a></span>
                     </div>
                     {% if past_races %}
                     {% for race in past_races %}

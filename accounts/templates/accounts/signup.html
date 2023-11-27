@@ -3,15 +3,22 @@
 {% block title %}Signup{% endblock title %}
 
 {% block content %}
-<div class="row">
-    <div class="col-xs-8 col-sm-6 col-md-4">
-        <h2 class="mt-4 mb-4">Signup</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ signup_form.as_p }}
-            <button type="submit" class="btn btn-primary">Signup</button>
-        </form>
+
+<div class="container min-vh-70 d-flex align-items-center justify-content-start">
+    <div class="row">
+        <div class="col">
+            <div class="align-items-center">
+                <h2>Signup</h2>
+            </div>
+                <form class="mt-4" method="post">
+                    {% csrf_token %}
+                    {{ signup_form.as_p }}
+                    <button type="submit" class="mt-4 mx-1 btn btn-outline-primary">Signup</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
+
 
 {% endblock content %}
