@@ -69,7 +69,7 @@
                     <ul>
                     {% else %}
                     <ul class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url "add_result" %}">Add a result</a>
+                        <a class="dropdown-item" href="{% url "add_result_to_race" id=race_object.id  %}">Add a result</a>
                     </ul>
                     {% endif %}
                 </div>

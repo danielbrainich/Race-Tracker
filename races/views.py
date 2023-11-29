@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from races.models import Race
-from races.forms import AddRaceForm
+from races.forms import AddRaceForm, AddResultToRaceForm
 from datetime import date
+from django.contrib import messages
 
 
 @login_required
@@ -41,6 +42,7 @@ def show_race(request, id):
 
 @login_required
 def add_race(request):
+
     if request.method == "POST":
         form = AddRaceForm(request.POST)
         if form.is_valid():
@@ -54,6 +56,29 @@ def add_race(request):
         "add_race_form": form,
     }
     return render(request, "races/add_race.html", context)
+
+@login_required
+def add_result_to_race(request, id):
+    race = get_object_or_404(Race, id=id)
+
+    if request.method == 'POST':
+        form = AddResultToRaceForm(request.POST)
+        if form.is_valid():
+            result = form.save(False)
+            result.race = race
+            result.owner = request.user
+            result.save()
+            return redirect("home")
+    else:
+        form = AddResultToRaceForm()
+
+    context = {
+        "form": form,
+    }
+
+    return render(request, "races/add_result_to_race.html", context)
+
+
 
 
 @login_required

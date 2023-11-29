@@ -32,9 +32,9 @@
 
             <div class="tab-pane fade show active" id="all-races-tab-pane" role="tabpanel" aria-labelledby="all-races-tab" tabindex="0">
                 <div class="row">
-                    <div class="mt-4 mx-2" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Add a race" data-bs-trigger="hover">
-                        <a href="{% url "add_race" %}"> <span class="material-symbols-outlined">add</span></a>
-                    </div>
+                        <div class="mt-4 mx-2" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Add a race" data-bs-trigger="hover">
+                            <a href="{% url "add_race" %}"> <span class="material-symbols-outlined">add</span></a>
+                        </div>
                     {% if all_races %}
                     {% for race in all_races %}
                         <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
