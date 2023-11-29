@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}
-Edit a Race
+Edit Race
 {% endblock title %}
 
 {% block content %}
 
-<div class="row">
-    <div class=col></div>
-    <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-        <div class="d-flex flex-column align-items-center">
+<div class="container min-vh-70 d-flex align-items-center justify-content-center">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex flex-column align-items-center">
             <h2 class="mt-4">Edit Race</h2>
+            <h3 class="mb-4">{{ race.name }}</h3>
         </div>
         <form class="mt-4" method="post">
             {% csrf_token %}
@@ -25,7 +26,6 @@ Edit a Race
             <a class="btn btn-outline-secondary mt-4 mx-1" href="/">Cancel</a>
         </form>
     </div>
-    <div class="col"></div>
 </div>
 
 {% endblock content %}

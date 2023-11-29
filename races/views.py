@@ -74,6 +74,7 @@ def add_result_to_race(request, id):
 
     context = {
         "form": form,
+        "race": race,
     }
 
     return render(request, "races/add_result_to_race.html", context)
@@ -93,6 +94,7 @@ def edit_race(request, id):
         form = AddRaceForm(instance=race)
     context = {
         "edit_race_form": form,
+        "race": race,
     }
     return render(request, "races/edit_race.html", context)
 
@@ -104,6 +106,6 @@ def delete_race(request, id):
         race.delete()
         return redirect("home")
 
-    context = {}
+    context = {"race": race}
 
     return render(request, "races/delete_race.html", context)

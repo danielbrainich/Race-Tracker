@@ -9,35 +9,66 @@
 
 {% block content %}
 
-<div class="row">
-    <div class="col">
+<div class="container min-vh-70">
 
-        <div class="d-flex justify-content-center">
-            <h2 class="mt-4 mb-4">My Races</h2>
-        </div>
+    <div class="row">
+        <div class="col">
 
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#all-races-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">All Races</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#upcoming-races-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Upcoming Races</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#past-races-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Past Races</button>
-            </li>
-        </ul>
+            <div class="d-flex justify-content-center">
+                <h2 class="mt-4 mb-4">My Races</h2>
+            </div>
 
-        <div class="tab-content" id="myTabContent">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#all-races-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">All Races</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#upcoming-races-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Upcoming Races</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#past-races-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Past Races</button>
+                </li>
+            </ul>
 
-            <div class="tab-pane fade show active" id="all-races-tab-pane" role="tabpanel" aria-labelledby="all-races-tab" tabindex="0">
-                <div class="row">
+            <div class="tab-content" id="myTabContent">
+
+                <div class="tab-pane fade show active" id="all-races-tab-pane" role="tabpanel" aria-labelledby="all-races-tab" tabindex="0">
+                    <div class="row">
+                            <div class="mt-4 mx-2" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Add a race" data-bs-trigger="hover">
+                                <a href="{% url "add_race" %}"> <span class="material-symbols-outlined">add</span></a>
+                            </div>
+                        {% if all_races %}
+                        {% for race in all_races %}
+                            <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
+                                <div class="card list-card m-3 mt-4">
+                                    <a href="{% url "show_race" race.id %}">
+                                        <img img src="{% static 'images/'|add:race.distance|add:'.png' %}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ race.name }}</h5>
+                                            <div>{{ race.date }}</div>
+                                            <div>{{ race.location }}</div>
+                                            <div>{{ race.get_distance_display}}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% else %}
+                            <div class="d-flex justify-content-center">
+                                <p>No races to display</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="upcoming-races-tab-pane" role="tabpanel" aria-labelledby="upcoming-races-tab" tabindex="0">
+                    <div class="row">
                         <div class="mt-4 mx-2" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Add a race" data-bs-trigger="hover">
                             <a href="{% url "add_race" %}"> <span class="material-symbols-outlined">add</span></a>
                         </div>
-                    {% if all_races %}
-                    {% for race in all_races %}
-                        <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
+                        {% if future_races %}
+                        {% for race in future_races %}
+                        <div class="col-9 col-md-6 col-lg-4 col-xl-3">
                             <div class="card list-card m-3 mt-4">
                                 <a href="{% url "show_race" race.id %}">
                                     <img img src="{% static 'images/'|add:race.distance|add:'.png' %}" class="card-img-top" alt="...">
@@ -50,70 +81,42 @@
                                 </a>
                             </div>
                         </div>
-                    {% endfor %}
-                    {% else %}
+                        {% endfor %}
+                        {% else %}
                         <div class="d-flex justify-content-center">
-                            <p>No races to display</p>
+                            <p>No upcoming races to display</p>
                         </div>
-                    {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
 
-            <div class="tab-pane fade" id="upcoming-races-tab-pane" role="tabpanel" aria-labelledby="upcoming-races-tab" tabindex="0">
-                <div class="row">
-                    <div class="mt-4 mx-2" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Add a race" data-bs-trigger="hover">
-                        <a href="{% url "add_race" %}"> <span class="material-symbols-outlined">add</span></a>
-                    </div>
-                    {% if future_races %}
-                    {% for race in future_races %}
-                    <div class="col-9 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card list-card m-3 mt-4">
-                            <a href="{% url "show_race" race.id %}">
-                                <img img src="{% static 'images/'|add:race.distance|add:'.png' %}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ race.name }}</h5>
-                                    <div>{{ race.date }}</div>
-                                    <div>{{ race.location }}</div>
-                                    <div>{{ race.get_distance_display}}</div>
-                                </div>
-                            </a>
+                <div class="tab-pane fade" id="past-races-tab-pane" role="tabpanel" aria-labelledby="past-races-tab" tabindex="0">
+                    <div class="row">
+                        <div class="mt-4 mx-2" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Add a race" data-bs-trigger="hover">
+                                <span><a href="{% url "add_race" %}"> <span class="material-symbols-outlined">add</span></a></span>
                         </div>
+                        {% if past_races %}
+                        {% for race in past_races %}
+                        <div class="col-9 col-md-6 col-lg-4 col-xl-3">
+                            <div class="card list-card m-3 mt-4">
+                                <a href="{% url "show_race" race.id %}">
+                                    <img img src="{% static 'images/'|add:race.distance|add:'.png' %}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ race.name }}</h5>
+                                        <div>{{ race.date }}</div>
+                                        <div>{{ race.location }}</div>
+                                        <div>{{ race.get_distance_display}}</div>
+                                    </div>
+                                </a>
+                            </div>
                     </div>
-                    {% endfor %}
-                    {% else %}
-                    <div class="d-flex justify-content-center">
-                        <p>No upcoming races to display</p>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="past-races-tab-pane" role="tabpanel" aria-labelledby="past-races-tab" tabindex="0">
-                <div class="row">
-                    <div class="mt-4 mx-2" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Add a race" data-bs-trigger="hover">
-                            <span><a href="{% url "add_race" %}"> <span class="material-symbols-outlined">add</span></a></span>
-                    </div>
-                    {% if past_races %}
-                    {% for race in past_races %}
-                    <div class="col-9 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card list-card m-3 mt-4">
-                            <a href="{% url "show_race" race.id %}">
-                                <img img src="{% static 'images/'|add:race.distance|add:'.png' %}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ race.name }}</h5>
-                                    <div>{{ race.date }}</div>
-                                    <div>{{ race.location }}</div>
-                                    <div>{{ race.get_distance_display}}</div>
-                                </div>
-                            </a>
+                        {% endfor %}
+                        {% else %}
+                        <div class="d-flex justify-content-center">
+                            <p>No past races to display</p>
                         </div>
-                </div>
-                    {% endfor %}
-                    {% else %}
-                    <div class="d-flex justify-content-center">
-                        <p>No past races to display</p>
+                        {% endif %}
                     </div>
-                    {% endif %}
                 </div>
             </div>
 
