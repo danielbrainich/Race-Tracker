@@ -7,55 +7,56 @@
 {% endblock title %}
 
 {% block content %}
-<div class="row">
-    <div class="col">
 
-        <h2 class="mt-4 mb-4">My Results</h2>
-        <div class="card mt-4">
-            <div class="card-header">My Results</div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Race</th>
-                            <th>Time</th>
-                            <th>Overall Place</th>
-                            <th>Division</th>
-                            <th>Division Place</th>
-                            <th>Percentile</th>
-                            <th>Link</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% if result_list %}
-                        {% for result in result_list %}
-                        <tr>
-                            <td><a href="{% url "show_race" result.race.id %}">{{ result.race }}</a></td>
-                            <td>{{ result.time }}</td>
-                            <td>{{ result.overall_place }}</td>
-                            <td>{{ result.get_division_display }}</td>
-                            <td>{{ result.division_place }}</td>
-                            <td>{{ result.overall_place|calculate_percentile:result.finishers }}%</td>
-                            <td><a href="{{ result.link }}"><img src="{% static "images/link.png" %}" width="22" height="22" alt="Link icon"></a></td>
-                        </tr>
-                        {% endfor %}
-                        {% else %}
-                        <tr>
-                            <td>No results reported</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        {% endif %}
-                    </tbody>
-                </table>
-                <a class="btn btn-primary btn-sm" href="{% url "add_result" %}">Add a result</a>
+<div class="container min-vh-70">
+
+    <div class="row">
+        <div class="col">
+
+            <div class="d-flex justify-content-center">
+                <h2 class="mt-4 mb-4">Results</h2>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">Results</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Race</th>
+                                    <th>Time</th>
+                                    <th>Place</th>
+                                    <th>Percentile</th>
+                                    <th>Link</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if result_list %}
+                                {% for result in result_list %}
+                                <tr>
+                                    <td><a href="{% url "show_race" result.race.id %}">{{ result.race }}</a></td>
+                                    <td>{{ result.time }}</td>
+                                    <td>{{ result.place }}</td>
+                                    <td>{{ result.place|calculate_percentile:result.finishers }}%</td>
+                                    <td><a href="{{ result.link }}"><span class="material-symbols-outlined">link</span></a></td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr>
+                                    <td>No results reported</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 </div>
 {% endblock content %}

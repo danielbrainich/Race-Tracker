@@ -2,19 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from races.models import Race
 
-DIVISION_CHOICES = [
-    ("m", "M"),
-    ("f", "F"),
-]
-
 class Result(models.Model):
     time = models.DurationField()
-    overall_place = models.SmallIntegerField()
-    division = models.CharField(
-        max_length=1,
-        choices=DIVISION_CHOICES,
-    )
-    division_place = models.SmallIntegerField()
+    place = models.SmallIntegerField(null=True)
     finishers = models.SmallIntegerField()
     link = models.URLField(null=True)
     race = models.OneToOneField(

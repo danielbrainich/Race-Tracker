@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Add a Race
+Add Race
 {% endblock title %}
 
 {% block content %}
@@ -12,18 +12,19 @@ Add a Race
             <div class="d-flex justify-content-center">
             <h2 class="mt-4">Add Race</h2>
         </div>
-        <form class="mt-4" method="post">
-            {% csrf_token %}
-            {% for field in add_race_form %}
-            <div class="mb-3 row">
-                <div>{{ field.errors }}</div>
-                <div class="col-3">{{ field.label_tag }}</div>
-                <div class="col">{{ field }}</div>
-            </div>
-            {% endfor %}
-            <button type="submit" class="mt-4 mx-1 btn btn-outline-primary">Submit</button>
-            <a class="btn btn-outline-secondary mt-4 mx-1" href="/">Cancel</a>
-        </form>
+            <form class="mt-4" method="post">
+                {% csrf_token %}
+                {% for field in add_race_form %}
+                <div class="mb-3 row">
+                    <div>{{ field.errors }}</div>
+                    <div class="col-4 text-nowrap">{{ field.label_tag }}</div>
+                    <div class="col">{{ field }}</div>
+                </div>
+                {% endfor %}
+                <button type="submit" class="mt-4 mx-1 btn btn-outline-primary">Submit</button>
+                <a class="btn btn-outline-secondary mt-4 mx-1" href="/">Cancel</a>
+            </form>
+        </div>
     </div>
 </div>
 

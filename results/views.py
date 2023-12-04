@@ -61,6 +61,8 @@ def delete_result(request, race_id, result_id):
         result_instance.delete()
         return redirect("home")
 
-    context = {}
+    context = {
+        "race": race_instance
+    }
 
     return render(request, "results/delete_result.html", context)

@@ -19,7 +19,7 @@ Add Result
             {% for field in form %}
             <div class="mb-3 row">
                 <div>{{ field.errors }}</div>
-                <div class="col-3">{{ field.label_tag }}</div>
+                <div class="col-4 text-nowrap">{{ field.label_tag }}</div>
                 <div class="col">{{ field }}</div>
             </div>
             {% endfor %}

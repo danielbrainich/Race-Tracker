@@ -80,20 +80,12 @@
                             <td>{{ race_object.result.time }}</td>
                         </tr>
                         <tr>
-                            <th>Overall Place</th>
-                            <td>{{ race_object.result.overall_place }}</td>
-                        </tr>
-                        <tr>
-                            <th>Division</th>
-                            <td>{{ race_object.result.get_division_display }}</td>
-                        </tr>
-                        <tr>
-                            <th>Division Place</th>
-                            <td>{{ race_object.result.division_place }}</td>
+                            <th>Place</th>
+                            <td>{{ race_object.result.place }}</td>
                         </tr>
                         <tr>
                             <th>Rank</th>
-                            <td>{{ race_object.result.overall_place|calculate_percentile:race_object.result.finishers }}%</td>
+                            <td>{{ race_object.result.place|calculate_percentile:race_object.result.finishers }}%</td>
                         </tr>
                         <tr>
                             <th>Link</th>

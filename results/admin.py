@@ -6,9 +6,7 @@ from results.models import Result
 class ResultAdmin(admin.ModelAdmin):
     list_display = [
         "time",
-        "overall_place",
-        "division",
-        "division_place",
+        "place",
         "finishers",
         "race",
         "id",

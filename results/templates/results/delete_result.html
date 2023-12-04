@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Delete a Race
+Delete Result
 {% endblock title %}
 
 {% block content %}
@@ -9,8 +9,9 @@ Delete a Race
 <div class="container min-vh-70 d-flex align-items-center justify-content-center">
     <div class="row">
         <div class="col">
-            <div class="align-items-center">
+            <div class="d-flex flex-column align-items-center">
                 <h2 class="mt-4">Delete Result</h2>
+                <h3 class="mb-4">{{ race.name }}</h3>
             </div>
             <div class="mt-4">
                 <form method="post">
