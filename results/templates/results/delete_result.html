@@ -18,7 +18,7 @@ Delete Result
                     {% csrf_token %}
                     <p>Are you sure want to delete this result?</p>
                     <button type="submit" class="mt-4 mx-1 btn btn-outline-primary">Yes</button>
-                    <a class="btn btn-outline-secondary mt-4 mx-1" href="/">Cancel</a>
+                    <a class="btn btn-outline-secondary mt-4 mx-1" href="{% url "show_race" race.id %}">Cancel</a>
                 </form>
             </div>
         </div>

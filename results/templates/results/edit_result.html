@@ -23,7 +23,7 @@
                 </div>
                 {% endfor %}
                 <button type="submit" class="mt-4 mx-1 btn btn-outline-primary">Submit</button>
-                <a class="btn btn-outline-secondary mt-4 mx-1" href="/">Cancel</a>
+                <a class="btn btn-outline-secondary mt-4 mx-1" href="{% url "show_race" race.id %}">Cancel</a>
             </form>
         </div>
     </div>

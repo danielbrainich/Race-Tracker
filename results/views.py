@@ -5,25 +5,25 @@ from results.forms import AddResultForm
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
-def add_result(request):
-    if request.method == "POST":
-        form = AddResultForm(request.POST)
-        if form.is_valid():
-            result = form.save(False)
-            result.owner = request.user
-            result.save()
-            return redirect("home")
-    else:
-        form = AddResultForm()
-        print(form.fields)
-        form.fields["race"].queryset=Race.objects.filter(owner=request.user, result=None)
+# @login_required
+# def add_result(request):
+#     if request.method == "POST":
+#         form = AddResultForm(request.POST)
+#         if form.is_valid():
+#             result = form.save(False)
+#             result.owner = request.user
+#             result.save()
+#             return redirect("home")
+#     else:
+#         form = AddResultForm()
+#         print(form.fields)
+#         form.fields["race"].queryset=Race.objects.filter(owner=request.user, result=None)
 
-    context = {
-        "add_result_form": form,
+#     context = {
+#         "add_result_form": form,
 
-    }
-    return render(request, "results/add_result.html", context)
+#     }
+#     return render(request, "results/add_result.html", context)
 
 
 @login_required
@@ -41,7 +41,7 @@ def edit_result(request, race_id, result_id):
         form = AddResultForm(request.POST, instance=result_instance)
         if form.is_valid():
             form.save()
-            return redirect("home")
+            return redirect("show_race", id=race_id)
     else:
         form = AddResultForm(instance=result_instance)
 
@@ -59,7 +59,7 @@ def delete_result(request, race_id, result_id):
 
     if request.method == "POST":
         result_instance.delete()
-        return redirect("home")
+        return redirect("show_race", id=race_id)
 
     context = {
         "race": race_instance

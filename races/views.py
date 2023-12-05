@@ -1,10 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from races.models import Race
 from races.forms import AddRaceForm, AddResultToRaceForm
 from datetime import date
 from django.contrib import messages
-
 
 @login_required
 def list_races(request):
@@ -28,7 +27,6 @@ def list_races(request):
     }
     return render(request, "races/race_list.html", context)
 
-
 @login_required
 def show_race(request, id):
     race = get_object_or_404(Race, id=id)
@@ -39,7 +37,6 @@ def show_race(request, id):
     }
     return render(request, "races/race_details.html", context)
 
-
 @login_required
 def add_race(request):
 
@@ -49,7 +46,8 @@ def add_race(request):
             race = form.save(False)
             race.owner = request.user
             race.save()
-            return redirect("list_races")
+            detail_url = reverse("show_race", args=[race.id])
+            return redirect(detail_url)
     else:
         form = AddRaceForm()
     context = {
@@ -68,7 +66,7 @@ def add_result_to_race(request, id):
             result.race = race
             result.owner = request.user
             result.save()
-            return redirect("home")
+            return redirect("show_race", id=id)
     else:
         form = AddResultToRaceForm()
 
@@ -78,9 +76,6 @@ def add_result_to_race(request, id):
     }
 
     return render(request, "races/add_result_to_race.html", context)
-
-
-
 
 @login_required
 def edit_race(request, id):
@@ -106,6 +101,8 @@ def delete_race(request, id):
         race.delete()
         return redirect("home")
 
-    context = {"race": race}
+    context = {
+        "race": race
+        }
 
     return render(request, "races/delete_race.html", context)
