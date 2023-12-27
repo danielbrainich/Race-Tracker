@@ -4,6 +4,10 @@
 // Include any default variable overrides here (though functions won't be available)
 $primary: #7FC844;
 
+$custom-theme-colors: (
+  // Define your custom theme colors here if needed
+);
+
 @import "../../../node_modules/bootstrap/scss/_functions";
 @import "../../../node_modules/bootstrap/scss/_variables";
 
@@ -26,6 +30,7 @@ h3 {
 
 a {
     text-decoration: none;
+    color: #7FC844;
 }
 
 ul {
@@ -54,8 +59,7 @@ ul {
     color: $gray-300;
 }
 
-.card-body div,
-.light-gray {
+.card-body div {
     color: $gray-300;
 }
 
@@ -67,11 +71,19 @@ ul {
     padding-right: 1rem;
 }
 
-
 .table td {
     padding-left: 1rem;
+    color: $gray-300;
 }
 
-.min-height-200 {
-    min-height: 20rem; /* Adjust the value as needed */
-  }
+.badge-img {
+    max-width: 10rem;
+}
+
+.nav-link {
+    color: #7FC844;
+}
+
+.results-table-min-height {
+    min-height: 10rem;
+}

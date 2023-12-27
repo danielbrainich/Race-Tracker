@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load custom_tags %}
 
 {% load static %}
 
@@ -45,7 +44,7 @@
                                 <div class="card list-card m-3 mt-4">
                                     <a href="{% url "show_race" race.id %}">
                                         <div class="card-body">
-                                            <img img src="{% static 'images/' %}{{ race.image_filename }}" class="card-img-top w-75 pe-3 pb-1" alt={{ race.get_distance_display }}>
+                                            <img img src="{% static 'images/' %}{{ race.image_filename }}" class="card-img-top w-75 pb-1 badge-img" alt={{ race.get_distance_display }}>
                                             <h5 class="card-title">{{ race.name }}</h5>
                                             <div>{{ race.date }}</div>
                                             <div>{{ race.location }}</div>
@@ -75,7 +74,7 @@
                             <div class="card list-card m-3 mt-4">
                                 <a href="{% url "show_race" race.id %}">
                                     <div class="card-body">
-                                        <img img src="{% static 'images/' %}{{ race.image_filename }}" class="card-img-top w-75 pe-3 pb-1" alt={{ race.get_distance_display }}>
+                                        <img img src="{% static 'images/' %}{{ race.image_filename }}" class="card-img-top w-75 pb-1 badge-img" alt={{ race.get_distance_display }}>
 
                                         <h5 class="card-title">{{ race.name }}</h5>
                                         <div>{{ race.date }}</div>
@@ -106,7 +105,7 @@
                             <div class="card list-card m-3 mt-4">
                                 <a href="{% url "show_race" race.id %}">
                                     <div class="card-body">
-                                        <img img src="{% static 'images/' %}{{ race.image_filename }}" class="card-img-top w-75 pe-3 pb-1" alt={{ race.get_distance_display }}>
+                                        <img img src="{% static 'images/' %}{{ race.image_filename }}" class="card-img-top w-75 pb-1 badge-img" alt={{ race.get_distance_display }}>
                                         <h5 class="card-title">{{ race.name }}</h5>
                                         <div>{{ race.date }}</div>
                                         <div>{{ race.location }}</div>

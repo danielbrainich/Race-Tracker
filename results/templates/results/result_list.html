@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load custom_tags %}
 {% load static %}
 
 {% block title %}
@@ -15,7 +14,7 @@
             <div class="d-flex justify-content-center">
                 <h2 class="mt-4 mb-4">Results</h2>
             </div>
-            <div class="card mt-4 min-height-200">
+            <div class="card mt-4">
                 <div class="card-header">Results</div>
                 <div class="card-body">
                     <div class="mx-2">
@@ -23,7 +22,7 @@
                             <a href="{% url "add_result" %}"> <span class="material-symbols-outlined">add</span></a>
                         </div>
                     </div>
-                    <div class="table-responsive">
+                    <div class="table-responsive results-table-min-height">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -60,7 +59,11 @@
                                     <td>{{ result_info.result.place }}</td>
                                     <td>{{ result_info.result.finishers }}</td>
                                     <td>{{ result_info.percentile }}%</td>
-                                    <td><a href="{{ result_info.result.link }}"><span class="material-symbols-outlined">link</span></a></td>
+                                    {% if result_info.result.link %}
+                                        <td><a href="{{ result_info.result.link }}"><span class="material-symbols-outlined">link</span></a></td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
                                 </tr>
                                 {% endfor %}
                                 {% else %}

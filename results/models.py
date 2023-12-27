@@ -9,7 +9,7 @@ class Result(models.Model):
     seconds = models.DurationField(null=True)
     place = models.SmallIntegerField(null=True)
     finishers = models.SmallIntegerField()
-    link = models.URLField(null=True)
+    link = models.URLField(null=True, blank=True)
     race = models.OneToOneField(
         Race,
         related_name="result",

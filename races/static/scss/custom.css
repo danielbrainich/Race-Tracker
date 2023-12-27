@@ -11986,11 +11986,12 @@ h3, .h3 {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
-  color: #b2de8f;
+  color: #7FC844;
 }
 
 a {
   text-decoration: none;
+  color: #7FC844;
 }
 
 ul {
@@ -12019,13 +12020,8 @@ ul {
   color: #dee2e6;
 }
 
-.card-body div,
-.light-gray {
+.card-body div {
   color: #dee2e6;
-}
-
-.light-green {
-  color: #b2de8f;
 }
 
 .min-vh-70 {
@@ -12038,4 +12034,17 @@ ul {
 
 .table td {
   padding-left: 1rem;
+  color: #dee2e6;
+}
+
+.badge-img {
+  max-width: 10rem;
+}
+
+.nav-link {
+  color: #7FC844;
+}
+
+.results-table-min-height {
+  min-height: 10rem;
 }

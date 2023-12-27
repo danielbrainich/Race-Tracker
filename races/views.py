@@ -2,8 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from races.models import Race
 from races.forms import AddRaceForm, AddResultToRaceForm
-from datetime import date
-from datetime import timedelta
+from datetime import date, timedelta
 from common.calculations import calculate_percentile, calculate_pace
 from results.models import Result
 from django.urls import reverse
@@ -27,6 +26,8 @@ def list_races(request):
         62.1: "100k.png",
         100: "100m.png",
     }
+
+    image_filename = "default.png"
 
     for race in race_list:
         if race.date > today:
@@ -80,7 +81,7 @@ def add_race(request):
     else:
         form = AddRaceForm()
     context = {
-        "add_race_form": form,
+        "form": form,
     }
     return render(request, "races/add_race.html", context)
 
@@ -121,7 +122,7 @@ def edit_race(request, id):
     else:
         form = AddRaceForm(instance=race)
     context = {
-        "edit_race_form": form,
+        "form": form,
         "race": race,
     }
     return render(request, "races/edit_race.html", context)

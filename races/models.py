@@ -31,7 +31,7 @@ class Race(models.Model):
     )
     elevation_gain = models.PositiveIntegerField()
     date = models.DateField()
-    link = models.URLField(null=True)
+    link = models.URLField(null=True, blank=True)
     owner = models.ForeignKey(
         User,
         related_name="projects",

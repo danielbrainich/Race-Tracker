@@ -18,14 +18,18 @@ class AddRaceForm(ModelForm):
             "link",
         ]
 
+        labels = {
+            "elevation_gain": "Elev Gain (feet)"
+        }
+
         widgets = {
             "name": forms.TextInput(attrs={"class": "form-control", "placeholder": ""}),
             "distance": forms.Select(attrs={"class": "form-control", "placeholder": ""}),
-            "location": forms.TextInput(attrs={"class": "form-control", "placeholder": "City, State"}),
-            "terrain": forms.Select(attrs={"class": "form-control", "placeholder": "Terrain"}),
-            "elevation_gain": forms.NumberInput(attrs={"class": "form-control", "placeholder": "In feet"}),
+            "location": forms.TextInput(attrs={"class": "form-control", "placeholder": ""}),
+            "terrain": forms.Select(attrs={"class": "form-control", "placeholder": ""}),
+            "elevation_gain": forms.NumberInput(attrs={"class": "form-control", "placeholder": ""}),
             "date": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
-            "link": forms.URLInput(attrs={"class": "form-control", "placeholder": "https://www.myrace.com"}),
+            "link": forms.URLInput(attrs={"class": "form-control", "placeholder": ""}),
         }
 
 class AddResultToRaceForm(ModelForm):
@@ -45,7 +49,7 @@ class AddResultToRaceForm(ModelForm):
         widgets = {
             "place": forms.NumberInput(attrs={"class": "form-control"}),
             "finishers": forms.NumberInput(attrs={"class": "form-control"}),
-            "link": forms.URLInput(attrs={"class": "form-control", "placeholder": "https://www.myrace.com"}),
+            "link": forms.URLInput(attrs={"class": "form-control", "placeholder": ""}),
         }
 
     def clean_time(self):

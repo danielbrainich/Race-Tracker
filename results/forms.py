@@ -22,7 +22,7 @@ class AddResultForm(ModelForm):
             "race": forms.Select(attrs={"class": "form-control"}),
             "place": forms.NumberInput(attrs={"class": "form-control"}),
             "finishers": forms.NumberInput(attrs={"class": "form-control"}),
-            "link": forms.URLInput(attrs={"class": "form-control", "placeholder": "https://www.myrace.com"}),
+            "link": forms.URLInput(attrs={"class": "form-control", "placeholder": ""}),
         }
 
     def clean_time(self):

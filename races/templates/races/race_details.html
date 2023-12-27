@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load custom_tags %}
 {% load static %}
 
 {% block title %}{{ race.name }}{% endblock title %}
@@ -30,7 +29,7 @@
                     <table class="table">
                         <tr>
                             <th>Distance</th>
-                            <td>{{ race.get_distance_display }}</td>
+                            <td class="">{{ race.get_distance_display }}</td>
                         </tr>
                         <tr>
                             <th>Location</th>
@@ -50,7 +49,11 @@
                         </tr>
                         <tr>
                             <th>Link</th>
-                            <td><a href="{{ race.link }}"><span class="material-symbols-outlined">link</span></a></td>
+                            {% if race.link %}
+                                <td><a href="{{ race.link }}"><span class="material-symbols-outlined">link</span></a></td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
                         </tr>
                     </table>
                 </div>
@@ -99,7 +102,11 @@
                         </tr>
                         <tr>
                             <th>Link</th>
-                            <td><a href="{{ race.result.link }}"><span class="material-symbols-outlined">link</span></a></td>
+                            {% if race.result.link %}
+                                <td><a href="{{ race.result.link }}"><span class="material-symbols-outlined">link</span></a></td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
                         </tr>
                     </table>
                     {% else %}
