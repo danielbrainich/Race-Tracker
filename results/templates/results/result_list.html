@@ -15,7 +15,7 @@
             <div class="d-flex justify-content-center">
                 <h2 class="mt-4 mb-4">Results</h2>
             </div>
-            <div class="card mt-4">
+            <div class="card mt-4 min-height-200">
                 <div class="card-header">Results</div>
                 <div class="card-body">
                     <div class="mx-2">
@@ -29,9 +29,11 @@
                                 <tr>
                                     <th></th>
                                     <th>Race</th>
+                                    <th>Distance</th>
                                     <th>Time</th>
                                     <th>Pace</th>
                                     <th>Place</th>
+                                    <th>Finishers</th>
                                     <th>Percentile</th>
                                     <th>Link</th>
                                 </tr>
@@ -52,9 +54,11 @@
                                         </div>
                                     </td>
                                     <td><a href="{% url "show_race" result_info.result.race.id %}">{{ result_info.result.race }}</a></td>
+                                    <td>{{ result_info.result.race.get_distance_display }}</td>
                                     <td>{{ result_info.result.time }}</td>
                                     <td>{{ result_info.pace }}</td>
                                     <td>{{ result_info.result.place }}</td>
+                                    <td>{{ result_info.result.finishers }}</td>
                                     <td>{{ result_info.percentile }}%</td>
                                     <td><a href="{{ result_info.result.link }}"><span class="material-symbols-outlined">link</span></a></td>
                                 </tr>
@@ -62,6 +66,10 @@
                                 {% else %}
                                 <tr>
                                     <td>No results reported</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>

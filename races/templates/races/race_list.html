@@ -44,12 +44,11 @@
                             <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
                                 <div class="card list-card m-3 mt-4">
                                     <a href="{% url "show_race" race.id %}">
-                                        <img img src="{% static 'images/'|add:race.distance|add:'.png' %}" class="card-img-top" alt="...">
                                         <div class="card-body">
+                                            <img img src="{% static 'images/' %}{{ race.image_filename }}" class="card-img-top w-75 pe-3 pb-1" alt={{ race.get_distance_display }}>
                                             <h5 class="card-title">{{ race.name }}</h5>
                                             <div>{{ race.date }}</div>
                                             <div>{{ race.location }}</div>
-                                            <div>{{ race.get_distance_display}}</div>
                                         </div>
                                     </a>
                                 </div>
@@ -72,15 +71,15 @@
                         </div>
                         {% if future_races %}
                         {% for race in future_races %}
-                        <div class="col-9 col-md-6 col-lg-4 col-xl-3">
+                        <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
                             <div class="card list-card m-3 mt-4">
                                 <a href="{% url "show_race" race.id %}">
-                                    <img img src="{% static 'images/'|add:race.distance|add:'.png' %}" class="card-img-top" alt="...">
                                     <div class="card-body">
+                                        <img img src="{% static 'images/' %}{{ race.image_filename }}" class="card-img-top w-75 pe-3 pb-1" alt={{ race.get_distance_display }}>
+
                                         <h5 class="card-title">{{ race.name }}</h5>
                                         <div>{{ race.date }}</div>
                                         <div>{{ race.location }}</div>
-                                        <div>{{ race.get_distance_display }}</div>
                                     </div>
                                 </a>
                             </div>
@@ -103,19 +102,18 @@
                         </div>
                         {% if past_races %}
                         {% for race in past_races %}
-                        <div class="col-9 col-md-6 col-lg-4 col-xl-3">
+                        <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
                             <div class="card list-card m-3 mt-4">
                                 <a href="{% url "show_race" race.id %}">
-                                    <img img src="{% static 'images/'|add:race.distance|add:'.png' %}" class="card-img-top" alt="...">
                                     <div class="card-body">
+                                        <img img src="{% static 'images/' %}{{ race.image_filename }}" class="card-img-top w-75 pe-3 pb-1" alt={{ race.get_distance_display }}>
                                         <h5 class="card-title">{{ race.name }}</h5>
                                         <div>{{ race.date }}</div>
                                         <div>{{ race.location }}</div>
-                                        <div>{{ race.get_distance_display}}</div>
                                     </div>
                                 </a>
                             </div>
-                    </div>
+                        </div>
                         {% endfor %}
                         {% else %}
                         <div class="d-flex justify-content-center">

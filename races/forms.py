@@ -29,7 +29,7 @@ class AddRaceForm(ModelForm):
         }
 
 class AddResultToRaceForm(ModelForm):
-    hours = IntegerField(min_value=0, max_value=48, required=False)
+    hours = IntegerField(min_value=0, max_value=99, required=False)
     minutes = IntegerField(min_value=0, max_value=59, required=False)
     seconds = IntegerField(min_value=0, max_value=59, required=False)
 

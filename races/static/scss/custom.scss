@@ -7,17 +7,9 @@ $primary: #7FC844;
 @import "../../../node_modules/bootstrap/scss/_functions";
 @import "../../../node_modules/bootstrap/scss/_variables";
 
-$custom-theme-colors: (
-
-);
-
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 
 @import "../../../node_modules/bootstrap/scss/bootstrap";
-
-var(--bs-link-color);
-    --bs-nav-link-hover-color: var(--bs-link-hover-color);
-    #7FC844
 
 h2 {
     font-family: 'Roboto', sans-serif;
@@ -79,3 +71,7 @@ ul {
 .table td {
     padding-left: 1rem;
 }
+
+.min-height-200 {
+    min-height: 20rem; /* Adjust the value as needed */
+  }

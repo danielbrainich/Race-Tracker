@@ -36,29 +36,27 @@ def account_logout(request):
     logout(request)
     return redirect("login")
 
-
 def account_signup(request):
     if request.method == "POST":
         signup_form = SignupForm(request.POST)
         if signup_form.is_valid():
             username = signup_form.cleaned_data["username"]
             password = signup_form.cleaned_data["password"]
-            password_confirmation = signup_form.cleaned_data["password_confirmation"]
             if User.objects.filter(username=username).exists():
                 signup_form.add_error("username", "The username is already taken")
-
-            elif password == password_confirmation:
+            else:
                 user = User.objects.create_user(username, password=password)
                 login(request, user)
                 return redirect("home")
+        else:
+            signup_form.add_error(None, "Could not create account. Please check the form")
     else:
         signup_form = SignupForm()
+
     context = {
         "signup_form": signup_form,
     }
     return render(request, "accounts/signup.html", context)
-
-
 
 class PasswordsChangeView(PasswordChangeView, LoginRequiredMixin, TemplateView):
     form_class = Custom_Password_Change_Form

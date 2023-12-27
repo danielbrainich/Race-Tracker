@@ -2,19 +2,19 @@
 {% load custom_tags %}
 {% load static %}
 
-{% block title %}
-    {{ race_object.name }}
-{% endblock title %}
+{% block title %}{{ race.name }}{% endblock title %}
 
 {% block content %}
 
 <div class="container min-vh-70 d-flex align-items-center justify-content-center">
     <div class="row">
-        <div class="col">
+        <div class="col-12">
             <div class="d-flex flex-column align-items-center">
                 <h2 class="mt-4">Race Details</h2>
-                <h3 class="mb-4">{{ race_object.name }}</h3>
+                <h3 class="mb-4">{{ race.name }}</h3>
             </div>
+        </div>
+        <div class="col-md-6">
             <div class="card mt-4">
                 <div class="card-header">Race Info</div>
                 <div class="card-body">
@@ -23,38 +23,40 @@
                             <span class="material-symbols-outlined">more_vert</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url "edit_race" race_object.id %}">Edit race</a></li>
-                            <li><a class="dropdown-item" href="{% url "delete_race" race_object.id %}">Delete race</a></li>
+                            <li><a class="dropdown-item" href="{% url "edit_race" race.id %}">Edit race</a></li>
+                            <li><a class="dropdown-item" href="{% url "delete_race" race.id %}">Delete race</a></li>
                         </ul>
                     </div>
                     <table class="table">
                         <tr>
                             <th>Distance</th>
-                            <td>{{ race_object.get_distance_display }}</td>
+                            <td>{{ race.get_distance_display }}</td>
                         </tr>
                         <tr>
                             <th>Location</th>
-                            <td>{{ race_object.location }}</td>
+                            <td>{{ race.location }}</td>
                         </tr>
                         <tr>
                             <th>Terrain</th>
-                            <td>{{ race_object.get_terrain_display }}</td>
+                            <td>{{ race.get_terrain_display }}</td>
                         </tr>
                         <tr>
                             <th>Elevation Gain</th>
-                            <td>{{ race_object.elevation_gain }} feet</td>
+                            <td>{{ racce.elevation_gain }} feet</td>
                         </tr>
                         <tr>
                             <th>Date</th>
-                            <td>{{ race_object.date }}</td>
+                            <td>{{ race.date }}</td>
                         </tr>
                         <tr>
                             <th>Link</th>
-                            <td><a href="{{ race_object.link }}"><span class="material-symbols-outlined">link</span></a></td>
+                            <td><a href="{{ race.link }}"><span class="material-symbols-outlined">link</span></a></td>
                         </tr>
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="col-md-6">
             <div class="card mt-4">
                 <div class="card-header">Race Result</div>
                 <div class="card-body">
@@ -62,40 +64,71 @@
                         <a class="color-primary" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="material-symbols-outlined">more_vert</span>
                         </a>
-                        {% if race_object.result %}
+                        {% if race.result %}
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url "edit_result" race_id=race_object.id result_id=race_object.result.id %}">Edit result</a></li>
-                            <li><a class="dropdown-item" href="{% url "delete_result" race_id=race_object.id result_id=race_object.result.id %}">Delete result</a></li>
+                            <li><a class="dropdown-item" href="{% url "edit_result" race_id=race.id result_id=race.result.id %}">Edit result</a></li>
+                            <li><a class="dropdown-item" href="{% url "delete_result" race_id=race.id result_id=race.result.id %}">Delete result</a></li>
                         <ul>
                         {% else %}
                         <ul class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url "add_result_to_race" id=race_object.id  %}">Add a result</a>
+                            <a class="dropdown-item" href="{% url "add_result_to_race" id=race.id  %}">Add a result</a>
                         </ul>
                         {% endif %}
                     </div>
-                    {% if race_object.result %}
+                    {% if race.result %}
                     <table class="table">
                         <tr>
                             <th>Time</th>
-                            <td>{{ race_object.result.time }}</td>
+                            <td>{{ race.result.time }}</td>
+                        </tr>
+                        <tr>
+                            <th>Pace</th>
+                            <td>{{ result_pace }}</td>
                         </tr>
                         <tr>
                             <th>Place</th>
-                            <td>{{ race_object.result.place }}</td>
+                            <td>{{ race.result.place }}</td>
                         </tr>
                         <tr>
-                            <th>Rank</th>
-                            <td>{{ race_object.result.place|calculate_percentile:race_object.result.finishers }}%</td>
+                            <th>Finishers</th>
+                            <td>{{ race.result.finishers }}</td>
+                        </tr>
+                        <tr>
+                            <th>Percentile</th>
+                            <td>{{ result_percentile }}%</td>
                         </tr>
                         <tr>
                             <th>Link</th>
-                            <td><a href="{{ race_object.result.link }}"><span class="material-symbols-outlined">link</span></a></td>
+                            <td><a href="{{ race.result.link }}"><span class="material-symbols-outlined">link</span></a></td>
                         </tr>
                     </table>
                     {% else %}
-                    <div class="d-flex justify-content-center">
-                        <p>No results reported</p>
-                    </div>
+                    <table class="table">
+                        <tr>
+                            <th>Time</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Pace</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Place</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Finishers</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Percentile</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Link</th>
+                            <td></td>
+                        </tr>
+                    </table>
                     {% endif %}
                 </div>
             </div>

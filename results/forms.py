@@ -1,11 +1,10 @@
-from django.forms import ModelForm, IntegerField
-from races.models import Race
+from django.forms import ModelForm
 from results.models import Result
 from django import forms
 from datetime import timedelta
 
 class AddResultForm(ModelForm):
-    hours = forms.IntegerField(min_value=0, max_value=48, required=False)
+    hours = forms.IntegerField(min_value=0, max_value=99, required=False)
     minutes = forms.IntegerField(min_value=0, max_value=59, required=False)
     seconds = forms.IntegerField(min_value=0, max_value=59, required=False)
 
