@@ -12,20 +12,25 @@
 
     <div class="row">
         <div class="col-md-8 mx-auto">
-
             <div class="d-flex justify-content-center">
                 <h2 class="mt-4 mb-4">Results</h2>
             </div>
-
             <div class="card mt-4">
                 <div class="card-header">Results</div>
                 <div class="card-body">
+                    <div class="mx-2">
+                        <div class="d-inline" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Add a result" data-bs-trigger="hover">
+                            <a href="{% url "add_result" %}"> <span class="material-symbols-outlined">add</span></a>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Race</th>
                                     <th>Time</th>
+                                    <th>Pace</th>
                                     <th>Place</th>
                                     <th>Percentile</th>
                                     <th>Link</th>
@@ -33,13 +38,25 @@
                             </thead>
                             <tbody>
                                 {% if result_list %}
-                                {% for result in result_list %}
+                                {% for result_info in result_list %}
                                 <tr>
-                                    <td><a href="{% url "show_race" result.race.id %}">{{ result.race }}</a></td>
-                                    <td>{{ result.time }}</td>
-                                    <td>{{ result.place }}</td>
-                                    <td>{{ result.place|calculate_percentile:result.finishers }}%</td>
-                                    <td><a href="{{ result.link }}"><span class="material-symbols-outlined">link</span></a></td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <span class="material-symbols-outlined">more_vert</span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{% url "edit_result" result_info.result.race.id result_info.result.id %}">Edit result</a></li>
+                                            <li><a class="dropdown-item" href="{% url "delete_result" result_info.result.race.id result_info.result.id %}">Delete result</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td><a href="{% url "show_race" result_info.result.race.id %}">{{ result_info.result.race }}</a></td>
+                                    <td>{{ result_info.result.time }}</td>
+                                    <td>{{ result_info.pace }}</td>
+                                    <td>{{ result_info.result.place }}</td>
+                                    <td>{{ result_info.percentile }}%</td>
+                                    <td><a href="{{ result_info.result.link }}"><span class="material-symbols-outlined">link</span></a></td>
                                 </tr>
                                 {% endfor %}
                                 {% else %}

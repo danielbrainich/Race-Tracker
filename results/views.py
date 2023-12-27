@@ -3,33 +3,70 @@ from results.models import Result
 from races.models import Race
 from results.forms import AddResultForm
 from django.contrib.auth.decorators import login_required
+from datetime import timedelta
 
+def add_result(request):
+    if request.method == "POST":
+        form = AddResultForm(request.POST)
+        if form.is_valid():
+            result = form.save(commit=False)
+            result.owner = request.user
+            total_seconds = form.cleaned_data.get("hours", 0) * 3600 + \
+                            form.cleaned_data.get("minutes", 0) * 60 + \
+                            form.cleaned_data.get("seconds", 0)
+            result.time = timedelta(seconds=total_seconds)
 
-# @login_required
-# def add_result(request):
-#     if request.method == "POST":
-#         form = AddResultForm(request.POST)
-#         if form.is_valid():
-#             result = form.save(False)
-#             result.owner = request.user
-#             result.save()
-#             return redirect("home")
-#     else:
-#         form = AddResultForm()
-#         print(form.fields)
-#         form.fields["race"].queryset=Race.objects.filter(owner=request.user, result=None)
+            result.save()
+            return redirect("home")
+    else:
+        form = AddResultForm()
+        form.fields["race"].queryset = Race.objects.filter(owner=request.user, result=None)
 
-#     context = {
-#         "add_result_form": form,
-
-#     }
-#     return render(request, "results/add_result.html", context)
+    context = {
+        "add_result_form": form,
+    }
+    return render(request, "results/add_result.html", context)
 
 
 @login_required
 def list_results(request):
-    result = Result.objects.filter(owner=request.user)
-    context = {"result_list": result}
+    results = Result.objects.filter(owner=request.user)
+
+    def calculate_percentile(result):
+        finishers = result.finishers
+        place = result.place
+        try:
+            if finishers > 0:
+                return round(100 - ((place / finishers) * 100))
+        except (ValueError, ZeroDivisionError):
+            return 0
+
+    def calculate_pace(result):
+        try:
+            distance = float(result.race.distance)
+            time = result.time
+
+            if isinstance(time, timedelta) and time.total_seconds() > 0:
+                pace_seconds_per_mile = time.total_seconds() / distance
+                minutes, seconds = divmod(pace_seconds_per_mile, 60)
+                return f"{int(minutes):02d}:{round(seconds):02d}"
+
+        except (ValueError, ZeroDivisionError):
+            pass
+
+        return "00:00"
+
+    result_list = []
+    for result in results:
+        result_percentile = calculate_percentile(result)
+        result_pace = calculate_pace(result)
+        result_list.append({
+            "result": result,
+            "percentile": result_percentile,
+            "pace": result_pace
+        })
+
+    context = {"result_list": result_list}
     return render(request, "results/result_list.html", context)
 
 @login_required

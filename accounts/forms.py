@@ -33,20 +33,27 @@ class SignupForm(forms.Form):
         widget=forms.PasswordInput(attrs={"class": "form-control", "type": "password", "placeholder": "Confirm your password"}),
     )
 
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        password_confirmation = cleaned_data.get("password_confirmation")
+
+        if password != password_confirmation:
+            raise forms.ValidationError("The passwords do not match")
 
 class Custom_Password_Change_Form(PasswordChangeForm):
     old_password = forms.CharField(
         max_length=150,
         label="",
-        widget=forms.PasswordInput(attrs={"class": "form-control", "type": "password", "placeholder": "Enter your current password"}),
+        widget=forms.PasswordInput(attrs={"class": "form-control", "type": "password", "placeholder": "Current password"}),
     )
     new_password1 = forms.CharField(
         max_length=150,
         label="",
-        widget=forms.PasswordInput(attrs={"class": "form-control", "type": "password", "placeholder": "Enter your new password"}),
+        widget=forms.PasswordInput(attrs={"class": "form-control", "type": "password", "placeholder": "New password"}),
     )
     new_password2 = forms.CharField(
         max_length=150,
         label="",
-        widget=forms.PasswordInput(attrs={"class": "form-control", "type": "password", "placeholder": "Confirm your new password"}),
+        widget=forms.PasswordInput(attrs={"class": "form-control", "type": "password", "placeholder": "Confirm new password"}),
     )

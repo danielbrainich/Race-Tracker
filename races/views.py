@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from races.models import Race
 from races.forms import AddRaceForm, AddResultToRaceForm
 from datetime import date
-from django.contrib import messages
+from datetime import timedelta
 
 @login_required
 def list_races(request):
@@ -65,6 +65,10 @@ def add_result_to_race(request, id):
             result = form.save(False)
             result.race = race
             result.owner = request.user
+            total_seconds = form.cleaned_data.get("hours", 0) * 3600 + \
+                            form.cleaned_data.get("minutes", 0) * 60 + \
+                            form.cleaned_data.get("seconds", 0)
+            result.time = timedelta(seconds=total_seconds)
             result.save()
             return redirect("show_race", id=id)
     else:

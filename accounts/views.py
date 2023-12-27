@@ -5,7 +5,6 @@ from django.urls import reverse_lazy
 from accounts.forms import LoginForm, SignupForm, Custom_Password_Change_Form
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
@@ -26,8 +25,9 @@ def account_login(request):
                 return redirect("home")
     else:
         login_form = LoginForm()
+
     context = {
-        "login_form": login_form,
+        "login_form": login_form
     }
     return render(request, "accounts/login.html", context)
 
@@ -45,16 +45,12 @@ def account_signup(request):
             password = signup_form.cleaned_data["password"]
             password_confirmation = signup_form.cleaned_data["password_confirmation"]
             if User.objects.filter(username=username).exists():
-                signup_form.add_error("username", "the username is already taken")
+                signup_form.add_error("username", "The username is already taken")
 
             elif password == password_confirmation:
                 user = User.objects.create_user(username, password=password)
                 login(request, user)
                 return redirect("home")
-
-            else:
-                signup_form.add_error("password", "the passwords do not match")
-
     else:
         signup_form = SignupForm()
     context = {
