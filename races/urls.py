@@ -1,5 +1,12 @@
 from django.urls import path
-from races.views import list_races, show_race, add_race, edit_race, delete_race, add_result_to_race
+from races.views import (
+    list_races,
+    show_race,
+    add_race,
+    edit_race,
+    delete_race,
+    add_result_to_race,
+)
 
 urlpatterns = [
     path("", list_races, name="list_races"),

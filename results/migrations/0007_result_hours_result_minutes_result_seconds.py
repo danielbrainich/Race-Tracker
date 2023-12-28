@@ -4,25 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('results', '0006_remove_result_division_remove_result_division_place'),
+        ("results", "0006_remove_result_division_remove_result_division_place"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='result',
-            name='hours',
+            model_name="result",
+            name="hours",
             field=models.DurationField(null=True),
         ),
         migrations.AddField(
-            model_name='result',
-            name='minutes',
+            model_name="result",
+            name="minutes",
             field=models.DurationField(null=True),
         ),
         migrations.AddField(
-            model_name='result',
-            name='seconds',
+            model_name="result",
+            name="seconds",
             field=models.DurationField(null=True),
         ),
     ]

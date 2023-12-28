@@ -4,22 +4,21 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('results', '0013_alter_result_hours_alter_result_minutes_and_more'),
+        ("results", "0013_alter_result_hours_alter_result_minutes_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='result',
-            name='hours',
+            model_name="result",
+            name="hours",
         ),
         migrations.RemoveField(
-            model_name='result',
-            name='minutes',
+            model_name="result",
+            name="minutes",
         ),
         migrations.RemoveField(
-            model_name='result',
-            name='seconds',
+            model_name="result",
+            name="seconds",
         ),
     ]

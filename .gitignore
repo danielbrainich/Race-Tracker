@@ -1,3 +1,28 @@
-*.pyc
+# Ignore compiled Python files
 __pycache__/
+*.pyc
+*.pyo
+
+# Ignore database file
 db.sqlite3
+
+# Ignore Heroku-specific files
+*.env
+*.env.local
+*.env.dev
+*.env.prod
+
+# Ignore virtual environment
+venv/
+
+# Ignore local development settings
+local_settings.py
+
+# Ignore logs
+*.log
+
+# Ignore Node.js modules
+node_modules/
+
+# Ignore Django's migration files
+**/migrations/

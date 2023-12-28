@@ -7,27 +7,32 @@ from django.contrib.auth.decorators import login_required
 from datetime import timedelta
 from common.calculations import calculate_percentile, calculate_pace
 
+
 def add_result(request):
     if request.method == "POST":
         form = AddResultForm(request.POST)
         if form.is_valid():
             result = form.save(commit=False)
             result.owner = request.user
-            total_seconds = form.cleaned_data.get("hours", 0) * 3600 + \
-                            form.cleaned_data.get("minutes", 0) * 60 + \
-                            form.cleaned_data.get("seconds", 0)
+            total_seconds = (
+                form.cleaned_data.get("hours", 0) * 3600
+                + form.cleaned_data.get("minutes", 0) * 60
+                + form.cleaned_data.get("seconds", 0)
+            )
             result.time = timedelta(seconds=total_seconds)
             result.save()
             return redirect("list_results")
     else:
         form = AddResultForm()
-        form.fields["race"].queryset = Race.objects.filter(owner=request.user, result=None)
+        form.fields["race"].queryset = Race.objects.filter(
+            owner=request.user, result=None
+        )
 
     context = {
         "form": form,
     }
-    return render(request, "results/add_result.html", context)
 
+    return render(request, "results/add_result.html", context)
 
 @login_required
 def list_results(request):
@@ -62,7 +67,9 @@ def edit_result(request, race_id, result_id):
         "form": form,
         "race": race,
     }
+    
     return render(request, "results/edit_result.html", context)
+
 
 @login_required
 def delete_result(request, race_id, result_id):
@@ -73,8 +80,6 @@ def delete_result(request, race_id, result_id):
         result.delete()
         return redirect("show_race", id=race_id)
 
-    context = {
-        "race": race
-    }
+    context = {"race": race}
 
     return render(request, "results/delete_result.html", context)

@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+
 def calculate_percentile(result):
     finishers = result.finishers
     place = result.place
@@ -9,6 +10,7 @@ def calculate_percentile(result):
             return round(100 - place / finishers * 100)
     except (ValueError, ZeroDivisionError):
         return 0
+
 
 def calculate_pace(result):
     try:

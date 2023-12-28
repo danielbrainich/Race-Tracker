@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from races.models import Race
 
+
 class Result(models.Model):
     time = models.DurationField(null=True)
     place = models.SmallIntegerField(null=True)

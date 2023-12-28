@@ -8,21 +8,22 @@
     <div class="row">
         <div class="col">
             <div class="d-flex flex-column align-items-center">
-            <h2 class="mt-4">Edit Race</h2>
-            <h3 class="mb-4">{{ race.name }}</h3>
-        </div>
-        <form class="mt-4" method="post">
-            {% csrf_token %}
-            {% for field in form %}
-            <div class="mb-3 row">
-                <div>{{ field.errors }}</div>
-                <div class="col-4 text-nowrap">{{ field.label_tag }}</div>
-                <div class="col">{{ field }}</div>
+                <h2 class="mt-4">Edit Race</h2>
+                <h3 class="mb-4">{{ race.name }}</h3>
             </div>
-            {% endfor %}
-            <button type="submit" class="mt-4 mx-1 btn btn-outline-primary">Submit</button>
-            <a class="btn btn-outline-secondary mt-4 mx-1" href="{% url "show_race" race.id %}">Cancel</a>
-        </form>
+            <form class="mt-4" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="mb-3 row">
+                    <div>{{ field.errors }}</div>
+                    <div class="col-4 text-nowrap">{{ field.label_tag }}</div>
+                    <div class="col">{{ field }}</div>
+                </div>
+                {% endfor %}
+                <button type="submit" class="mt-4 mx-1 btn btn-outline-primary">Submit</button>
+                <a class="btn btn-outline-secondary mt-4 mx-1" href="{% url "show_race" race.id %}">Cancel</a>
+            </form>
+        </div>
     </div>
 </div>
 

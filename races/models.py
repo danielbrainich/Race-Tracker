@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Race(models.Model):
     DISTANCE_CHOICES = [
         (3.1, "5k"),

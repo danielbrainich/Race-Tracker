@@ -29,7 +29,7 @@
                     <table class="table">
                         <tr>
                             <th>Distance</th>
-                            <td class="">{{ race.get_distance_display }}</td>
+                            <td>{{ race.get_distance_display }}</td>
                         </tr>
                         <tr>
                             <th>Location</th>
@@ -71,7 +71,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url "edit_result" race_id=race.id result_id=race.result.id %}">Edit result</a></li>
                             <li><a class="dropdown-item" href="{% url "delete_result" race_id=race.id result_id=race.result.id %}">Delete result</a></li>
-                        <ul>
+                        </ul>
                         {% else %}
                         <ul class="dropdown-menu">
                             <a class="dropdown-item" href="{% url "add_result_to_race" id=race.id  %}">Add a result</a>

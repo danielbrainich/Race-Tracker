@@ -26,15 +26,15 @@ def account_login(request):
     else:
         login_form = LoginForm()
 
-    context = {
-        "login_form": login_form
-    }
+    context = {"login_form": login_form}
     return render(request, "accounts/login.html", context)
+
 
 @login_required
 def account_logout(request):
     logout(request)
     return redirect("login")
+
 
 def account_signup(request):
     if request.method == "POST":
@@ -49,7 +49,9 @@ def account_signup(request):
                 login(request, user)
                 return redirect("home")
         else:
-            signup_form.add_error(None, "Could not create account. Please check the form")
+            signup_form.add_error(
+                None, "Could not create account. Please check the form"
+            )
     else:
         signup_form = SignupForm()
 
@@ -58,9 +60,11 @@ def account_signup(request):
     }
     return render(request, "accounts/signup.html", context)
 
+
 class PasswordsChangeView(PasswordChangeView, LoginRequiredMixin, TemplateView):
     form_class = Custom_Password_Change_Form
     success_url = reverse_lazy("password_success")
+
 
 @login_required
 def password_success(request):

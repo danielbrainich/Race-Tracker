@@ -3,6 +3,7 @@ from results.models import Result
 from django import forms
 from datetime import timedelta
 
+
 class AddResultForm(ModelForm):
     hours = forms.IntegerField(
         min_value=0,
