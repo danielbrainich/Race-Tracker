@@ -19,7 +19,7 @@ class AddRaceForm(ModelForm):
         ]
 
         labels = {
-            "elevation_gain": "Elev Gain (feet)"
+            "elevation_gain": "Ft. Elev. Gain"
         }
 
         widgets = {
@@ -33,9 +33,21 @@ class AddRaceForm(ModelForm):
         }
 
 class AddResultToRaceForm(ModelForm):
-    hours = IntegerField(min_value=0, max_value=99)
-    minutes = IntegerField(min_value=0, max_value=59)
-    seconds = IntegerField(min_value=0, max_value=59)
+    hours = forms.IntegerField(
+        min_value=0,
+        max_value=99,
+        widget=forms.NumberInput(attrs={"class": "form-control"}),
+    )
+    minutes = forms.IntegerField(
+        min_value=0,
+        max_value=59,
+        widget=forms.NumberInput(attrs={"class": "form-control"}),
+    )
+    seconds = forms.IntegerField(
+        min_value=0,
+        max_value=59,
+        widget=forms.NumberInput(attrs={"class": "form-control"}),
+    )
 
     class Meta:
         model = Result
@@ -43,6 +55,9 @@ class AddResultToRaceForm(ModelForm):
         fields = [
             "place",
             "finishers",
+            "hours",
+            "minutes",
+            "seconds",
             "link",
         ]
 

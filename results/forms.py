@@ -4,9 +4,21 @@ from django import forms
 from datetime import timedelta
 
 class AddResultForm(ModelForm):
-    hours = forms.IntegerField(min_value=0, max_value=99)
-    minutes = forms.IntegerField(min_value=0, max_value=59)
-    seconds = forms.IntegerField(min_value=0, max_value=59)
+    hours = forms.IntegerField(
+        min_value=0,
+        max_value=99,
+        widget=forms.NumberInput(attrs={"class": "form-control"}),
+    )
+    minutes = forms.IntegerField(
+        min_value=0,
+        max_value=59,
+        widget=forms.NumberInput(attrs={"class": "form-control"}),
+    )
+    seconds = forms.IntegerField(
+        min_value=0,
+        max_value=59,
+        widget=forms.NumberInput(attrs={"class": "form-control"}),
+    )
 
     class Meta:
         model = Result
@@ -15,6 +27,9 @@ class AddResultForm(ModelForm):
             "race",
             "place",
             "finishers",
+            "hours",
+            "minutes",
+            "seconds",
             "link",
         ]
 
