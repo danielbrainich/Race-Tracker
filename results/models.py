@@ -3,12 +3,9 @@ from django.contrib.auth.models import User
 from races.models import Race
 
 class Result(models.Model):
-    time = models.DurationField()
-    hours = models.DurationField(null=True)
-    minutes = models.DurationField(null=True)
-    seconds = models.DurationField(null=True)
+    time = models.DurationField(null=True)
     place = models.SmallIntegerField(null=True)
-    finishers = models.SmallIntegerField()
+    finishers = models.SmallIntegerField(null=True)
     link = models.URLField(null=True, blank=True)
     race = models.OneToOneField(
         Race,

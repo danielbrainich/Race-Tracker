@@ -4,9 +4,9 @@ from django import forms
 from datetime import timedelta
 
 class AddResultForm(ModelForm):
-    hours = forms.IntegerField(min_value=0, max_value=99, required=False)
-    minutes = forms.IntegerField(min_value=0, max_value=59, required=False)
-    seconds = forms.IntegerField(min_value=0, max_value=59, required=False)
+    hours = forms.IntegerField(min_value=0, max_value=99)
+    minutes = forms.IntegerField(min_value=0, max_value=59)
+    seconds = forms.IntegerField(min_value=0, max_value=59)
 
     class Meta:
         model = Result

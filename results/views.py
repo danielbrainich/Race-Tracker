@@ -44,7 +44,6 @@ def list_results(request):
     context = {"result_list": result_list}
     return render(request, "results/result_list.html", context)
 
-@login_required
 def edit_result(request, race_id, result_id):
     race = get_object_or_404(Race, id=race_id)
     result = get_object_or_404(Result, id=result_id, race=race)
@@ -52,7 +51,9 @@ def edit_result(request, race_id, result_id):
     if request.method == "POST":
         form = AddResultToRaceForm(request.POST, instance=result)
         if form.is_valid():
-            form.save()
+            cleaned_time = form.clean_time()
+            result.time = cleaned_time
+            result.save()
             return redirect("show_race", id=race_id)
     else:
         form = AddResultToRaceForm(instance=result)
@@ -60,7 +61,6 @@ def edit_result(request, race_id, result_id):
     context = {
         "form": form,
         "race": race,
-
     }
     return render(request, "results/edit_result.html", context)
 
