@@ -5,8 +5,7 @@ ConfigParser==6.0.0
 contextlib2==21.6.0
 cryptography==41.0.7
 cx_Oracle==8.3.0
-cython==3.0.7
-Cython==3.0.7
+# cython==3.0.7
 disco==1.40.4
 dl==0.1.0
 docutils==0.20.1
@@ -17,7 +16,7 @@ hypothesis==6.92.2
 ipdb==0.13.13
 ipython==8.15.0
 ipywidgets==8.1.1
-jnius==1.1.0
+# jnius==1.1.0
 keyring==24.3.0
 matplotlib==3.8.2
 mock==5.1.0
@@ -48,4 +47,3 @@ trove_classifiers==2023.11.29
 urllib3_secure_extra==0.1.0
 uvloop==0.19.0
 xmlrpclib==1.0.1
-Cython==3.0.7
