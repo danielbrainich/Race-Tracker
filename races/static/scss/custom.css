@@ -12038,7 +12038,7 @@ ul {
 }
 
 .badge-img {
-  max-width: 10rem;
+  max-width: 6rem;
 }
 
 .nav-link {
@@ -12047,4 +12047,12 @@ ul {
 
 .results-table-min-height {
   min-height: 10rem;
+}
+
+.gray {
+  color: #dee2e6 !important;
+}
+
+p {
+  color: #dee2e6 !important;
 }

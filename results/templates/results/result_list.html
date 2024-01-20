@@ -65,22 +65,14 @@
                                         <td></td>
                                     {% endif %}
                                 </tr>
-                                {% endfor %}
-                                {% else %}
-                                <tr>
-                                    <td>No results reported</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                {% endif %}
                             </tbody>
                         </table>
+                                {% endfor %}
+                                {% else %}
+                            </tbody>
+                        </table>
+                        <p class="mt-4">No results reported yet</p>
+                                {% endif %}
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ class LoginForm(forms.Form):
         max_length=150,
         label="",
         widget=forms.TextInput(
-            attrs={"class": "form-control", "placeholder": "Enter your username"}
+            attrs={"class": "form-control", "placeholder": "Username"}
         ),
     )
     password = forms.CharField(
@@ -17,7 +17,7 @@ class LoginForm(forms.Form):
             attrs={
                 "class": "form-control",
                 "type": "password",
-                "placeholder": "Enter your password",
+                "placeholder": "Password",
             }
         ),
     )
@@ -28,7 +28,7 @@ class SignupForm(forms.Form):
         max_length=150,
         label="",
         widget=forms.TextInput(
-            attrs={"class": "form-control", "placeholder": "Choose a username"}
+            attrs={"class": "form-control", "placeholder": "Username"}
         ),
     )
     password = forms.CharField(
@@ -38,7 +38,7 @@ class SignupForm(forms.Form):
             attrs={
                 "class": "form-control",
                 "type": "password",
-                "placeholder": "Create a password",
+                "placeholder": "Password",
             }
         ),
     )
@@ -49,7 +49,7 @@ class SignupForm(forms.Form):
             attrs={
                 "class": "form-control",
                 "type": "password",
-                "placeholder": "Confirm your password",
+                "placeholder": "Confirm password",
             }
         ),
     )

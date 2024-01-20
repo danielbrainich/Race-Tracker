@@ -10,7 +10,6 @@ from django.urls import reverse
 
 @login_required
 def list_races(request):
-    
     race_list = Race.objects.filter(owner=request.user)
     future_races = []
     past_races = []
@@ -51,7 +50,6 @@ def list_races(request):
 
 @login_required
 def show_race(request, id):
-
     race = get_object_or_404(Race, id=id)
 
     if request.user != race.owner:
@@ -78,15 +76,13 @@ def show_race(request, id):
 
 @login_required
 def add_race(request):
-
     if request.method == "POST":
         form = AddRaceForm(request.POST)
         if form.is_valid():
             race = form.save(False)
             race.owner = request.user
             race.save()
-            detail_url = reverse("show_race", args=[race.id])
-            return redirect(detail_url)
+            return redirect(list_races)
     else:
         form = AddRaceForm()
 
@@ -99,7 +95,6 @@ def add_race(request):
 
 @login_required
 def add_result_to_race(request, id):
-
     race = get_object_or_404(Race, id=id)
 
     if request.method == "POST":
@@ -129,7 +124,6 @@ def add_result_to_race(request, id):
 
 @login_required
 def edit_race(request, id):
-
     race = get_object_or_404(Race, id=id)
 
     if request.method == "POST":

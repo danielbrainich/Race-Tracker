@@ -9,6 +9,7 @@ from common.calculations import calculate_percentile, calculate_pace
 
 
 def add_result(request):
+    races = Race.objects.filter(owner=request.user, result=None)
     if request.method == "POST":
         form = AddResultForm(request.POST)
         if form.is_valid():
@@ -30,9 +31,11 @@ def add_result(request):
 
     context = {
         "form": form,
+        "races": races,
     }
 
     return render(request, "results/add_result.html", context)
+
 
 @login_required
 def list_results(request):
@@ -48,6 +51,7 @@ def list_results(request):
 
     context = {"result_list": result_list}
     return render(request, "results/result_list.html", context)
+
 
 def edit_result(request, race_id, result_id):
     race = get_object_or_404(Race, id=race_id)
@@ -67,7 +71,7 @@ def edit_result(request, race_id, result_id):
         "form": form,
         "race": race,
     }
-    
+
     return render(request, "results/edit_result.html", context)
 
 

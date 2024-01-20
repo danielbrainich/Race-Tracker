@@ -10,6 +10,9 @@
             <div class="d-flex justify-content-center">
                 <h2 class="mt-4">Add Result</h2>
             </div>
+                {% if not races %}
+            <div><p class="gray mt-2">You'll need a <a href="{% url "add_race" %}">add a new race</a> before you can report a result</p></div>
+                {% else %}
             <form class="mt-4" method="post">
                 {% csrf_token %}
                 {% for field in form %}
@@ -22,6 +25,7 @@
                 <button type="submit" class="mt-4 mx-1 btn btn-outline-primary">Submit</button>
                 <a class="btn btn-outline-secondary mt-4 mx-1" href="{% url "list_results" %}">Cancel</a>
             </form>
+            {% endif %}
         </div>
     </div>
 </div>
