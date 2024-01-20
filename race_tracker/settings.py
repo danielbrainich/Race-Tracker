@@ -25,7 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-=brue3$eyxdf7_3%4i&lbzkr^kuj7-r2@*c)xgrl^r%7e)o25$"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
+
 
 ALLOWED_HOSTS = ["race-tracker-e0e5cf38a81d.herokuapp.com"]
 
